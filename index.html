@@ -1,0 +1,8720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Labour Book | Factory</title>
+
+<style>
+
+/* ================================
+   RESET
+================================ */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f4f7fb;
+    color:#172033;
+    min-height:100vh;
+}
+
+button,
+input,
+select{
+    font-family:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+/* ================================
+   HEADER
+================================ */
+
+.header{
+    background:#172033;
+    color:white;
+    padding:16px 0;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    box-shadow:0 3px 15px rgba(0,0,0,.15);
+}
+
+.container{
+    width:94%;
+    max-width:1250px;
+    margin:auto;
+}
+
+.header-content{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.logo-icon{
+    width:42px;
+    height:42px;
+    border-radius:12px;
+    background:#2563eb;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+}
+
+.logo h1{
+    font-size:21px;
+}
+
+.logo p{
+    font-size:11px;
+    color:#aeb8ca;
+    margin-top:3px;
+}
+
+.today{
+    text-align:right;
+    font-size:13px;
+    color:#d8deea;
+}
+
+/* ================================
+   HERO
+================================ */
+
+.hero{
+    margin:25px 0;
+    padding:28px;
+    border-radius:20px;
+    background:linear-gradient(135deg,#1d4ed8,#2563eb);
+    color:white;
+    box-shadow:0 8px 25px rgba(37,99,235,.2);
+}
+
+.hero h2{
+    font-size:28px;
+    margin-bottom:8px;
+}
+
+.hero p{
+    color:#e0eaff;
+    font-size:14px;
+}
+
+/* ================================
+   DASHBOARD
+================================ */
+
+.dashboard{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    margin-bottom:25px;
+}
+
+.card{
+    background:white;
+    border-radius:16px;
+    padding:20px;
+    box-shadow:0 4px 15px rgba(0,0,0,.06);
+}
+
+.card-icon{
+    font-size:25px;
+    margin-bottom:12px;
+}
+
+.card-title{
+    font-size:13px;
+    color:#718096;
+    margin-bottom:8px;
+}
+
+.card-value{
+    font-size:27px;
+    font-weight:bold;
+}
+
+.card.blue .card-value{
+    color:#2563eb;
+}
+
+.card.green .card-value{
+    color:#16a34a;
+}
+
+.card.orange .card-value{
+    color:#ea580c;
+}
+
+.card.red .card-value{
+    color:#dc2626;
+}
+
+/* ================================
+   NAVIGATION
+================================ */
+
+.nav{
+    background:white;
+    padding:10px;
+    border-radius:15px;
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    margin-bottom:25px;
+    box-shadow:0 4px 15px rgba(0,0,0,.05);
+}
+
+.nav button{
+    border:0;
+    background:#eef2f7;
+    color:#374151;
+    padding:12px 18px;
+    border-radius:10px;
+    font-weight:bold;
+    white-space:nowrap;
+}
+
+.nav button.active{
+    background:#2563eb;
+    color:white;
+}
+
+/* ================================
+   SECTIONS
+================================ */
+
+.section{
+    display:none;
+}
+
+.section.active{
+    display:block;
+}
+
+.section-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    margin-bottom:18px;
+}
+
+.section-title{
+    font-size:23px;
+}
+
+/* ================================
+   FORM BOX
+================================ */
+
+.form-box{
+    background:white;
+    padding:22px;
+    border-radius:16px;
+    box-shadow:0 4px 15px rgba(0,0,0,.05);
+    margin-bottom:20px;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.input-group{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.input-group label{
+    font-size:13px;
+    font-weight:bold;
+    color:#374151;
+}
+
+.input-group input,
+.input-group select{
+    width:100%;
+    padding:12px;
+    border:1px solid #d7dce5;
+    border-radius:9px;
+    outline:none;
+    background:white;
+    font-size:14px;
+}
+
+.input-group input:focus,
+.input-group select:focus{
+    border-color:#2563eb;
+}
+
+/* ================================
+   BUTTONS
+================================ */
+
+.btn{
+    border:0;
+    padding:12px 18px;
+    border-radius:9px;
+    font-weight:bold;
+    font-size:14px;
+    transition:.2s;
+}
+
+.btn:hover{
+    transform:translateY(-1px);
+}
+
+.btn-primary{
+    background:#2563eb;
+    color:white;
+}
+
+.btn-success{
+    background:#16a34a;
+    color:white;
+}
+
+.btn-danger{
+    background:#dc2626;
+    color:white;
+}
+
+.btn-warning{
+    background:#f59e0b;
+    color:white;
+}
+
+.btn-secondary{
+    background:#e5e7eb;
+    color:#374151;
+}
+
+.form-actions{
+    margin-top:18px;
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+/* ================================
+   TABLE
+================================ */
+
+.table-box{
+    background:white;
+    border-radius:16px;
+    box-shadow:0 4px 15px rgba(0,0,0,.05);
+    overflow:hidden;
+}
+
+.table-scroll{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:700px;
+}
+
+th,
+td{
+    padding:14px;
+    text-align:left;
+    border-bottom:1px solid #edf0f4;
+    font-size:14px;
+}
+
+th{
+    background:#f8fafc;
+    color:#475569;
+    font-size:12px;
+    text-transform:uppercase;
+}
+
+tr:hover td{
+    background:#fafcff;
+}
+
+/* ================================
+   BADGES
+================================ */
+
+.badge{
+    display:inline-block;
+    padding:6px 10px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:bold;
+}
+
+.badge-present{
+    background:#dcfce7;
+    color:#15803d;
+}
+
+.badge-absent{
+    background:#fee2e2;
+    color:#b91c1c;
+}
+
+.badge-half{
+    background:#fef3c7;
+    color:#b45309;
+}
+
+/* ================================
+   EMPTY
+================================ */
+
+.empty{
+    text-align:center;
+    padding:35px 20px;
+    color:#7b8798;
+}
+
+.empty-icon{
+    font-size:40px;
+    margin-bottom:10px;
+}
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media(max-width:900px){
+
+    .dashboard{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:600px){
+
+    .container{
+        width:92%;
+    }
+
+    .header-content{
+        align-items:flex-start;
+    }
+
+    .today{
+        display:none;
+    }
+
+    .hero{
+        padding:22px;
+    }
+
+    .hero h2{
+        font-size:23px;
+    }
+
+    .dashboard{
+        grid-template-columns:repeat(2,1fr);
+        gap:10px;
+    }
+
+    .card{
+        padding:15px;
+    }
+
+    .card-value{
+        font-size:22px;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .section-title{
+        font-size:20px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="header">
+<div class="container header-content">
+
+    <div class="logo">
+        <div class="logo-icon">👷</div>
+
+        <div>
+            <h1>Labour Book</h1>
+            <p>Factory Labour Management</p>
+        </div>
+    </div>
+
+    <div class="today" id="todayDate">
+        Loading date...
+    </div>
+
+</div>
+</header>
+
+<main class="container">
+
+<section class="hero">
+
+    <h2>Factory Labour Management</h2>
+
+    <p>
+        Manage workers, attendance, daily wages and payments
+        easily from one place.
+    </p>
+
+</section>
+
+<section class="dashboard">
+
+    <div class="card blue">
+        <div class="card-icon">👷</div>
+        <div class="card-title">Total Labour</div>
+        <div class="card-value" id="totalLabour">0</div>
+    </div>
+
+    <div class="card green">
+        <div class="card-icon">✅</div>
+        <div class="card-title">Present Today</div>
+        <div class="card-value" id="presentToday">0</div>
+    </div>
+
+    <div class="card orange">
+        <div class="card-icon">💰</div>
+        <div class="card-title">Today's Wages</div>
+        <div class="card-value" id="todayWages">₹0</div>
+    </div>
+
+    <div class="card red">
+        <div class="card-icon">💳</div>
+        <div class="card-title">Pending Payment</div>
+        <div class="card-value" id="pendingPayment">₹0</div>
+    </div>
+
+</section>
+
+<nav class="nav">
+
+    <button class="nav-btn active" onclick="showSection('dashboardSection',this)">
+        🏠 Dashboard
+    </button>
+
+    <button class="nav-btn" onclick="showSection('labourSection',this)">
+        👷 Labour
+    </button>
+
+    <button class="nav-btn" onclick="showSection('attendanceSection',this)">
+        📅 Attendance
+    </button>
+
+    <button class="nav-btn" onclick="showSection('paymentSection',this)">
+        💰 Payments
+    </button>
+
+    <button class="nav-btn" onclick="showSection('reportSection',this)">
+        📊 Reports
+    </button>
+
+    <button class="nav-btn" onclick="showSection('settingsSection',this)">
+        ⚙️ Settings
+    </button>
+
+</nav>
+
+<!-- PART 2 WILL CONTINUE HERE -->
+ <!-- ================================
+     DASHBOARD SECTION
+================================ -->
+
+<section id="dashboardSection" class="section active">
+
+    <div class="section-header">
+        <div>
+            <h2 class="section-title">Dashboard</h2>
+        </div>
+    </div>
+
+    <div class="form-box">
+
+        <h3 style="margin-bottom:10px;">
+            👋 Welcome to Labour Book
+        </h3>
+
+        <p style="color:#6b7280;font-size:14px;line-height:1.6;">
+            Use this dashboard to manage your factory workers,
+            record daily attendance, calculate wages and track payments.
+        </p>
+
+    </div>
+
+    <div class="table-box">
+
+        <div style="padding:20px;">
+
+            <h3 style="margin-bottom:8px;">
+                📌 Today's Summary
+            </h3>
+
+            <p style="color:#6b7280;font-size:14px;">
+                Check today's labour attendance and wage information
+                from the sections above.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================================
+     LABOUR SECTION
+================================ -->
+
+<section id="labourSection" class="section">
+
+    <div class="section-header">
+
+        <h2 class="section-title">
+            👷 Labour Management
+        </h2>
+
+        <button class="btn btn-primary"
+                onclick="openLabourForm()">
+            + Add Labour
+        </button>
+
+    </div>
+
+
+    <!-- ADD LABOUR FORM -->
+
+    <div id="labourFormBox" class="form-box" style="display:none;">
+
+        <h3 style="margin-bottom:18px;">
+            Add New Labour
+        </h3>
+
+        <div class="form-grid">
+
+            <div class="input-group">
+
+                <label>Labour Name</label>
+
+                <input
+                    type="text"
+                    id="labourName"
+                    placeholder="Enter labour name"
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>Phone Number</label>
+
+                <input
+                    type="tel"
+                    id="labourPhone"
+                    placeholder="Enter phone number"
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>Work Type</label>
+
+                <select id="labourWork">
+
+                    <option value="Factory Work">
+                        Factory Work
+                    </option>
+
+                    <option value="Machine Operator">
+                        Machine Operator
+                    </option>
+
+                    <option value="Loading">
+                        Loading
+                    </option>
+
+                    <option value="Packing">
+                        Packing
+                    </option>
+
+                    <option value="Cleaning">
+                        Cleaning
+                    </option>
+
+                    <option value="Helper">
+                        Helper
+                    </option>
+
+                    <option value="Other">
+                        Other
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>Payment Type</label>
+
+                <select id="paymentType">
+
+                    <option value="daily">
+                        Daily
+                    </option>
+
+                    <option value="weekly">
+                        Weekly
+                    </option>
+
+                    <option value="monthly">
+                        Monthly
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>Daily Rate (₹)</label>
+
+                <input
+                    type="number"
+                    id="dailyRate"
+                    placeholder="Example: 600"
+                    min="0"
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>Joining Date</label>
+
+                <input
+                    type="date"
+                    id="joiningDate"
+                >
+
+            </div>
+
+        </div>
+
+
+        <div class="form-actions">
+
+            <button
+                class="btn btn-success"
+                onclick="saveLabour()">
+                💾 Save Labour
+            </button>
+
+            <button
+                class="btn btn-secondary"
+                onclick="closeLabourForm()">
+                Cancel
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- SEARCH -->
+
+    <div class="form-box">
+
+        <div class="input-group">
+
+            <label>🔍 Search Labour</label>
+
+            <input
+                type="text"
+                id="labourSearch"
+                placeholder="Search by name, phone or work..."
+                oninput="displayLabours()"
+            >
+
+        </div>
+
+    </div>
+
+
+    <!-- LABOUR TABLE -->
+
+    <div class="table-box">
+
+        <div class="table-scroll">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>#</th>
+
+                        <th>Name</th>
+
+                        <th>Phone</th>
+
+                        <th>Work</th>
+
+                        <th>Rate</th>
+
+                        <th>Payment</th>
+
+                        <th>Joined</th>
+
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="labourTableBody">
+
+                    <!-- Labour records will appear here -->
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================================
+     ATTENDANCE SECTION
+================================ -->
+
+<section id="attendanceSection" class="section">
+
+    <div class="section-header">
+
+        <h2 class="section-title">
+            📅 Attendance
+        </h2>
+
+    </div>
+
+
+    <div class="form-box">
+
+        <div class="form-grid">
+
+            <div class="input-group">
+
+                <label>Select Date</label>
+
+                <input
+                    type="date"
+                    id="attendanceDate"
+                >
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Quick Action</label>
+
+                <button
+                    class="btn btn-success"
+                    onclick="markAllPresent()">
+                    ✅ Mark All Present
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="table-box">
+
+        <div class="table-scroll">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>#</th>
+
+                        <th>Labour</th>
+
+                        <th>Daily Rate</th>
+
+                        <th>Status</th>
+
+                        <th>Payable</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="attendanceTableBody">
+
+                    <!-- Attendance will appear here -->
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================================
+     PAYMENT SECTION
+================================ -->
+
+<section id="paymentSection" class="section">
+
+    <div class="section-header">
+
+        <h2 class="section-title">
+            💰 Payments
+        </h2>
+
+    </div>
+
+
+    <div class="form-box">
+
+        <div class="form-grid">
+
+            <div class="input-group">
+
+                <label>Select Labour</label>
+
+                <select id="paymentLabour">
+
+                    <option value="">
+                        Select Labour
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>Payment Date</label>
+
+                <input
+                    type="date"
+                    id="paymentDate"
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>Amount (₹)</label>
+
+                <input
+                    type="number"
+                    id="paymentAmount"
+                    placeholder="Enter amount"
+                    min="0"
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>Payment Method</label>
+
+                <select id="paymentMethod">
+
+                    <option value="Cash">
+                        Cash
+                    </option>
+
+                    <option value="UPI">
+                        UPI
+                    </option>
+
+                    <option value="Bank Transfer">
+                        Bank Transfer
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <div class="form-actions">
+
+            <button
+                class="btn btn-success"
+                onclick="savePayment()">
+                💵 Record Payment
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="table-box">
+
+        <div class="table-scroll">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Date</th>
+
+                        <th>Labour</th>
+
+                        <th>Amount</th>
+
+                        <th>Method</th>
+
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="paymentTableBody">
+
+                    <!-- Payments will appear here -->
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================================
+     REPORT SECTION
+================================ -->
+
+<section id="reportSection" class="section">
+
+    <div class="section-header">
+
+        <h2 class="section-title">
+            📊 Reports
+        </h2>
+
+    </div>
+
+
+    <div class="dashboard">
+
+        <div class="card blue">
+
+            <div class="card-icon">
+                👷
+            </div>
+
+            <div class="card-title">
+                Total Workers
+            </div>
+
+            <div class="card-value"
+                 id="reportWorkers">
+                0
+            </div>
+
+        </div>
+
+
+        <div class="card green">
+
+            <div class="card-icon">
+                💰
+            </div>
+
+            <div class="card-title">
+                Total Earned
+            </div>
+
+            <div class="card-value"
+                 id="reportEarned">
+                ₹0
+            </div>
+
+        </div>
+
+
+        <div class="card orange">
+
+            <div class="card-icon">
+                💵
+            </div>
+
+            <div class="card-title">
+                Total Paid
+            </div>
+
+            <div class="card-value"
+                 id="reportPaid">
+                ₹0
+            </div>
+
+        </div>
+
+
+        <div class="card red">
+
+            <div class="card-icon">
+                📌
+            </div>
+
+            <div class="card-title">
+                Balance
+            </div>
+
+            <div class="card-value"
+                 id="reportBalance">
+                ₹0
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="table-box">
+
+        <div class="table-scroll">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Labour</th>
+
+                        <th>Total Days</th>
+
+                        <th>Present</th>
+
+                        <th>Half Days</th>
+
+                        <th>Total Earned</th>
+
+                        <th>Total Paid</th>
+
+                        <th>Balance</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="reportTableBody">
+
+                    <!-- Reports appear here -->
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================================
+     SETTINGS SECTION
+================================ -->
+
+<section id="settingsSection" class="section">
+
+    <div class="section-header">
+
+        <h2 class="section-title">
+            ⚙️ Settings
+        </h2>
+
+    </div>
+
+
+    <div class="form-box">
+
+        <h3 style="margin-bottom:18px;">
+            Factory Information
+        </h3>
+
+        <div class="form-grid">
+
+            <div class="input-group">
+
+                <label>Factory Name</label>
+
+                <input
+                    type="text"
+                    id="factoryName"
+                    placeholder="Enter factory name"
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>Owner Name</label>
+
+                <input
+                    type="text"
+                    id="ownerName"
+                    placeholder="Enter owner name"
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>Contact Number</label>
+
+                <input
+                    type="tel"
+                    id="factoryPhone"
+                    placeholder="Enter contact number"
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>Address</label>
+
+                <input
+                    type="text"
+                    id="factoryAddress"
+                    placeholder="Enter factory address"
+                >
+
+            </div>
+
+        </div>
+
+
+        <div class="form-actions">
+
+            <button
+                class="btn btn-primary"
+                onclick="saveSettings()">
+                💾 Save Settings
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="form-box">
+
+        <h3 style="margin-bottom:10px;">
+            ⚠️ Data Management
+        </h3>
+
+        <p style="font-size:13px;color:#6b7280;margin-bottom:15px;">
+            Your records are stored in this browser.
+            Clearing browser data may remove them.
+        </p>
+
+        <button
+            class="btn btn-danger"
+            onclick="clearAllData()">
+            🗑️ Clear All Data
+        </button>
+
+    </div>
+
+</section>
+
+<!-- PART 3 WILL CONTINUE HERE -->
+ <style>
+
+/* ================================
+   LABOUR ACTION BUTTONS
+================================ */
+
+.action-group{
+    display:flex;
+    gap:6px;
+    flex-wrap:wrap;
+}
+
+.small-btn{
+    border:0;
+    padding:7px 10px;
+    border-radius:7px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.edit-btn{
+    background:#dbeafe;
+    color:#1d4ed8;
+}
+
+.delete-btn{
+    background:#fee2e2;
+    color:#dc2626;
+}
+
+
+/* ================================
+   ATTENDANCE CONTROLS
+================================ */
+
+.attendance-select{
+    border:1px solid #d7dce5;
+    border-radius:8px;
+    padding:8px 10px;
+    background:white;
+    font-weight:bold;
+    outline:none;
+}
+
+.attendance-select:focus{
+    border-color:#2563eb;
+}
+
+
+/* ================================
+   PAYMENT SUMMARY
+================================ */
+
+.payment-summary{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+    margin-bottom:20px;
+}
+
+.summary-box{
+    background:white;
+    padding:18px;
+    border-radius:14px;
+    box-shadow:0 4px 15px rgba(0,0,0,.05);
+}
+
+.summary-box h4{
+    color:#718096;
+    font-size:13px;
+    margin-bottom:8px;
+}
+
+.summary-box strong{
+    font-size:22px;
+}
+
+
+/* ================================
+   REPORT FILTER
+================================ */
+
+.report-filter{
+    display:flex;
+    gap:10px;
+    align-items:end;
+    flex-wrap:wrap;
+}
+
+.report-filter .input-group{
+    min-width:180px;
+}
+
+
+/* ================================
+   FACTORY SETTINGS
+================================ */
+
+.settings-header{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:20px;
+}
+
+.settings-icon{
+    width:50px;
+    height:50px;
+    border-radius:14px;
+    background:#dbeafe;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:25px;
+}
+
+
+/* ================================
+   MODAL
+================================ */
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.55);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    z-index:2000;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-content{
+    background:white;
+    width:100%;
+    max-width:500px;
+    max-height:90vh;
+    overflow-y:auto;
+    border-radius:18px;
+    padding:24px;
+    box-shadow:0 15px 50px rgba(0,0,0,.25);
+}
+
+.modal-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:20px;
+}
+
+.modal-header h3{
+    font-size:21px;
+}
+
+.close-modal{
+    border:0;
+    background:#f1f5f9;
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    font-size:20px;
+}
+
+
+/* ================================
+   TOAST MESSAGE
+================================ */
+
+.toast{
+    position:fixed;
+    bottom:25px;
+    right:25px;
+    background:#172033;
+    color:white;
+    padding:14px 18px;
+    border-radius:10px;
+    box-shadow:0 8px 25px rgba(0,0,0,.2);
+    transform:translateY(100px);
+    opacity:0;
+    pointer-events:none;
+    transition:.3s;
+    z-index:3000;
+    max-width:320px;
+    font-size:14px;
+}
+
+.toast.show{
+    transform:translateY(0);
+    opacity:1;
+}
+
+
+/* ================================
+   FOOTER
+================================ */
+
+.footer{
+    text-align:center;
+    padding:30px 15px;
+    margin-top:35px;
+    color:#718096;
+    font-size:13px;
+}
+
+.footer strong{
+    color:#172033;
+}
+
+
+/* ================================
+   MOBILE TABLE
+================================ */
+
+@media(max-width:600px){
+
+    .payment-summary{
+        grid-template-columns:1fr;
+    }
+
+    .report-filter{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .report-filter .input-group{
+        width:100%;
+    }
+
+    .form-actions .btn{
+        flex:1;
+    }
+
+    .toast{
+        left:15px;
+        right:15px;
+        bottom:15px;
+        max-width:none;
+        text-align:center;
+    }
+
+}
+
+
+/* ================================
+   PRINT
+================================ */
+
+@media print{
+
+    .header,
+    .nav,
+    .hero,
+    .form-box,
+    .btn,
+    .footer{
+        display:none !important;
+    }
+
+    body{
+        background:white;
+    }
+
+    .section{
+        display:block !important;
+    }
+
+    .table-box{
+        box-shadow:none;
+    }
+
+}
+
+
+/* ================================
+   LOADING
+================================ */
+
+.loading{
+    text-align:center;
+    padding:30px;
+    color:#64748b;
+}
+
+.loading::after{
+    content:"";
+    display:inline-block;
+    width:15px;
+    height:15px;
+    margin-left:8px;
+    border:2px solid #cbd5e1;
+    border-top-color:#2563eb;
+    border-radius:50%;
+    animation:spin .7s linear infinite;
+}
+
+@keyframes spin{
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+
+
+/* ================================
+   SUCCESS / WARNING TEXT
+================================ */
+
+.text-success{
+    color:#16a34a;
+    font-weight:bold;
+}
+
+.text-danger{
+    color:#dc2626;
+    font-weight:bold;
+}
+
+.text-warning{
+    color:#d97706;
+    font-weight:bold;
+}
+
+.text-muted{
+    color:#64748b;
+}
+
+
+/* ================================
+   RESPONSIVE HEADER
+================================ */
+
+@media(max-width:480px){
+
+    .logo h1{
+        font-size:18px;
+    }
+
+    .logo-icon{
+        width:38px;
+        height:38px;
+        font-size:19px;
+    }
+
+    .hero{
+        margin-top:18px;
+    }
+
+    .dashboard{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .card-title{
+        font-size:11px;
+    }
+
+    .card-value{
+        font-size:19px;
+    }
+
+}
+
+</style>
+
+<!-- ================================
+     MODAL
+================================ -->
+
+<div id="editModal" class="modal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h3>✏️ Edit Labour</h3>
+
+            <button
+                class="close-modal"
+                onclick="closeEditModal()">
+                ×
+            </button>
+
+        </div>
+
+
+        <input
+            type="hidden"
+            id="editLabourId"
+        >
+
+
+        <div class="form-grid">
+
+            <div class="input-group">
+
+                <label>Labour Name</label>
+
+                <input
+                    type="text"
+                    id="editName"
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>Phone Number</label>
+
+                <input
+                    type="tel"
+                    id="editPhone"
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>Work Type</label>
+
+                <select id="editWork">
+
+                    <option value="Factory Work">
+                        Factory Work
+                    </option>
+
+                    <option value="Machine Operator">
+                        Machine Operator
+                    </option>
+
+                    <option value="Loading">
+                        Loading
+                    </option>
+
+                    <option value="Packing">
+                        Packing
+                    </option>
+
+                    <option value="Cleaning">
+                        Cleaning
+                    </option>
+
+                    <option value="Helper">
+                        Helper
+                    </option>
+
+                    <option value="Other">
+                        Other
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>Payment Type</label>
+
+                <select id="editPaymentType">
+
+                    <option value="daily">
+                        Daily
+                    </option>
+
+                    <option value="weekly">
+                        Weekly
+                    </option>
+
+                    <option value="monthly">
+                        Monthly
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>Daily Rate (₹)</label>
+
+                <input
+                    type="number"
+                    id="editRate"
+                    min="0"
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>Joining Date</label>
+
+                <input
+                    type="date"
+                    id="editJoining"
+                >
+
+            </div>
+
+        </div>
+
+
+        <div class="form-actions">
+
+            <button
+                class="btn btn-success"
+                onclick="updateLabour()">
+                💾 Update
+            </button>
+
+            <button
+                class="btn btn-secondary"
+                onclick="closeEditModal()">
+                Cancel
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================================
+     TOAST
+================================ -->
+
+<div id="toast" class="toast"></div>
+
+
+<!-- ================================
+     FOOTER
+================================ -->
+
+<footer class="footer">
+
+    <p>
+        <strong>Labour Book</strong>
+        • Factory Labour Management System
+    </p>
+
+    <p style="margin-top:6px;">
+        Records are stored locally on this device.
+    </p>
+
+</footer>
+
+
+<!-- PART 4 WILL CONTINUE HERE -->
+ <script>
+
+/* =========================================
+   LABOUR BOOK
+   JAVASCRIPT START
+========================================= */
+
+
+/* =========================================
+   GLOBAL DATA
+========================================= */
+
+let labours = JSON.parse(
+    localStorage.getItem("labourBook_labours")
+) || [];
+
+let attendance = JSON.parse(
+    localStorage.getItem("labourBook_attendance")
+) || [];
+
+let payments = JSON.parse(
+    localStorage.getItem("labourBook_payments")
+) || [];
+
+let settings = JSON.parse(
+    localStorage.getItem("labourBook_settings")
+) || {
+    factoryName: "",
+    ownerName: "",
+    factoryPhone: "",
+    factoryAddress: ""
+};
+
+
+/* =========================================
+   SAVE ALL DATA
+========================================= */
+
+function saveData(){
+
+    localStorage.setItem(
+        "labourBook_labours",
+        JSON.stringify(labours)
+    );
+
+    localStorage.setItem(
+        "labourBook_attendance",
+        JSON.stringify(attendance)
+    );
+
+    localStorage.setItem(
+        "labourBook_payments",
+        JSON.stringify(payments)
+    );
+
+    localStorage.setItem(
+        "labourBook_settings",
+        JSON.stringify(settings)
+    );
+}
+
+
+/* =========================================
+   CREATE UNIQUE ID
+========================================= */
+
+function createId(){
+
+    return Date.now().toString() +
+           Math.random().toString(36).substring(2,8);
+
+}
+
+
+/* =========================================
+   TODAY DATE
+========================================= */
+
+function getToday(){
+
+    const now = new Date();
+
+    const year = now.getFullYear();
+
+    const month = String(
+        now.getMonth() + 1
+    ).padStart(2,"0");
+
+    const day = String(
+        now.getDate()
+    ).padStart(2,"0");
+
+    return `${year}-${month}-${day}`;
+
+}
+
+
+/* =========================================
+   FORMAT DATE
+========================================= */
+
+function formatDate(dateString){
+
+    if(!dateString){
+        return "-";
+    }
+
+    const date = new Date(
+        dateString + "T00:00:00"
+    );
+
+    if(isNaN(date)){
+        return dateString;
+    }
+
+    return date.toLocaleDateString(
+        "en-IN",
+        {
+            day:"2-digit",
+            month:"short",
+            year:"numeric"
+        }
+    );
+
+}
+
+
+/* =========================================
+   FORMAT MONEY
+========================================= */
+
+function money(amount){
+
+    amount = Number(amount) || 0;
+
+    return "₹" + amount.toLocaleString(
+        "en-IN",
+        {
+            maximumFractionDigits:2
+        }
+    );
+
+}
+
+
+/* =========================================
+   ESCAPE HTML
+========================================= */
+
+function escapeHTML(value){
+
+    if(value === null || value === undefined){
+        return "";
+    }
+
+    return String(value)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================================
+   SHOW TOAST
+========================================= */
+
+function showToast(message){
+
+    const toast =
+        document.getElementById("toast");
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+    setTimeout(function(){
+
+        toast.classList.remove("show");
+
+    },2500);
+
+}
+
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+function showSection(sectionId, button){
+
+    document
+        .querySelectorAll(".section")
+        .forEach(function(section){
+
+            section.classList.remove("active");
+
+        });
+
+
+    const selected =
+        document.getElementById(sectionId);
+
+    if(selected){
+
+        selected.classList.add("active");
+
+    }
+
+
+    document
+        .querySelectorAll(".nav-btn")
+        .forEach(function(btn){
+
+            btn.classList.remove("active");
+
+        });
+
+
+    if(button){
+
+        button.classList.add("active");
+
+    }
+
+
+    /*
+       Refresh information whenever
+       a section is opened.
+    */
+
+    refreshAll();
+
+}
+
+
+/* =========================================
+   SET DEFAULT DATES
+========================================= */
+
+function setDefaultDates(){
+
+    const today = getToday();
+
+
+    const attendanceDate =
+        document.getElementById("attendanceDate");
+
+    if(attendanceDate){
+
+        attendanceDate.value = today;
+
+    }
+
+
+    const paymentDate =
+        document.getElementById("paymentDate");
+
+    if(paymentDate){
+
+        paymentDate.value = today;
+
+    }
+
+
+    const joiningDate =
+        document.getElementById("joiningDate");
+
+    if(joiningDate){
+
+        joiningDate.value = today;
+
+    }
+
+}
+
+
+/* =========================================
+   DISPLAY CURRENT DATE
+========================================= */
+
+function displayToday(){
+
+    const element =
+        document.getElementById("todayDate");
+
+    if(!element){
+        return;
+    }
+
+    const today = new Date();
+
+    element.textContent =
+        today.toLocaleDateString(
+            "en-IN",
+            {
+                weekday:"short",
+                day:"2-digit",
+                month:"short",
+                year:"numeric"
+            }
+        );
+
+}
+
+
+/* =========================================
+   REFRESH EVERYTHING
+========================================= */
+
+function refreshAll(){
+
+    displayLabours();
+
+    displayAttendance();
+
+    displayPayments();
+
+    updatePaymentLabourList();
+
+    updateDashboard();
+
+    updateReports();
+
+    loadSettings();
+
+}
+
+
+/* =========================================
+   INITIALIZE APPLICATION
+========================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+        displayToday();
+
+        setDefaultDates();
+
+        refreshAll();
+
+    }
+);
+
+
+/* =========================================
+   PART 5 CONTINUES BELOW
+========================================= */
+
+</script>
+<script>
+
+/* =========================================
+   LABOUR FORM
+========================================= */
+
+
+/* Open Add Labour Form */
+
+function openLabourForm(){
+
+    const form =
+        document.getElementById("labourFormBox");
+
+    if(form){
+
+        form.style.display = "block";
+
+    }
+
+    const name =
+        document.getElementById("labourName");
+
+    if(name){
+
+        name.focus();
+
+    }
+
+}
+
+
+/* Close Add Labour Form */
+
+function closeLabourForm(){
+
+    const form =
+        document.getElementById("labourFormBox");
+
+    if(form){
+
+        form.style.display = "none";
+
+    }
+
+    clearLabourForm();
+
+}
+
+
+/* Clear Labour Form */
+
+function clearLabourForm(){
+
+    document.getElementById("labourName").value = "";
+
+    document.getElementById("labourPhone").value = "";
+
+    document.getElementById("labourWork").value =
+        "Factory Work";
+
+    document.getElementById("paymentType").value =
+        "daily";
+
+    document.getElementById("dailyRate").value = "";
+
+    document.getElementById("joiningDate").value =
+        getToday();
+
+}
+
+
+/* =========================================
+   SAVE NEW LABOUR
+========================================= */
+
+function saveLabour(){
+
+    const name =
+        document.getElementById("labourName")
+        .value.trim();
+
+    const phone =
+        document.getElementById("labourPhone")
+        .value.trim();
+
+    const work =
+        document.getElementById("labourWork")
+        .value;
+
+    const paymentType =
+        document.getElementById("paymentType")
+        .value;
+
+    const rate =
+        Number(
+            document.getElementById("dailyRate")
+            .value
+        );
+
+    const joining =
+        document.getElementById("joiningDate")
+        .value;
+
+
+    /* Validate name */
+
+    if(!name){
+
+        showToast("Please enter labour name.");
+
+        document
+            .getElementById("labourName")
+            .focus();
+
+        return;
+
+    }
+
+
+    /* Validate rate */
+
+    if(!rate || rate <= 0){
+
+        showToast(
+            "Please enter a valid daily rate."
+        );
+
+        document
+            .getElementById("dailyRate")
+            .focus();
+
+        return;
+
+    }
+
+
+    /* Validate joining date */
+
+    if(!joining){
+
+        showToast(
+            "Please select joining date."
+        );
+
+        return;
+
+    }
+
+
+    /* Create labour object */
+
+    const labour = {
+
+        id:createId(),
+
+        name:name,
+
+        phone:phone,
+
+        work:work,
+
+        paymentType:paymentType,
+
+        dailyRate:rate,
+
+        joiningDate:joining,
+
+        createdAt:new Date().toISOString()
+
+    };
+
+
+    /* Add to array */
+
+    labours.push(labour);
+
+
+    /* Save */
+
+    saveData();
+
+
+    /* Refresh */
+
+    refreshAll();
+
+
+    /* Close form */
+
+    closeLabourForm();
+
+
+    /* Success */
+
+    showToast(
+        name + " added successfully!"
+    );
+
+}
+
+
+/* =========================================
+   DISPLAY LABOURS
+========================================= */
+
+function displayLabours(){
+
+    const tbody =
+        document.getElementById(
+            "labourTableBody"
+        );
+
+    if(!tbody){
+        return;
+    }
+
+
+    const searchInput =
+        document.getElementById(
+            "labourSearch"
+        );
+
+    const search =
+        searchInput
+        ? searchInput.value.trim().toLowerCase()
+        : "";
+
+
+    const filtered =
+        labours.filter(function(labour){
+
+            return (
+
+                labour.name
+                    .toLowerCase()
+                    .includes(search)
+
+                ||
+
+                labour.phone
+                    .toLowerCase()
+                    .includes(search)
+
+                ||
+
+                labour.work
+                    .toLowerCase()
+                    .includes(search)
+
+            );
+
+        });
+
+
+    /* No workers */
+
+    if(filtered.length === 0){
+
+        tbody.innerHTML = `
+            <tr>
+                <td colspan="8">
+                    <div class="empty">
+                        <div class="empty-icon">👷</div>
+                        <p>No labour records found.</p>
+                        <p style="margin-top:6px;font-size:12px;">
+                            Add your first labour using the
+                            <strong>+ Add Labour</strong> button.
+                        </p>
+                    </div>
+                </td>
+            </tr>
+        `;
+
+        return;
+
+    }
+
+
+    /* Build rows */
+
+    tbody.innerHTML =
+        filtered.map(function(labour,index){
+
+            return `
+
+                <tr>
+
+                    <td>
+                        ${index + 1}
+                    </td>
+
+                    <td>
+                        <strong>
+                            ${escapeHTML(labour.name)}
+                        </strong>
+                    </td>
+
+                    <td>
+                        ${
+                            labour.phone
+                            ? escapeHTML(labour.phone)
+                            : "-"
+                        }
+                    </td>
+
+                    <td>
+                        ${escapeHTML(labour.work)}
+                    </td>
+
+                    <td>
+                        <strong>
+                            ${money(labour.dailyRate)}
+                        </strong>
+                    </td>
+
+                    <td>
+                        ${
+                            labour.paymentType
+                            .charAt(0)
+                            .toUpperCase()
+                            +
+                            labour.paymentType
+                            .slice(1)
+                        }
+                    </td>
+
+                    <td>
+                        ${formatDate(labour.joiningDate)}
+                    </td>
+
+                    <td>
+
+                        <div class="action-group">
+
+                            <button
+                                class="small-btn edit-btn"
+                                onclick="openEditModal('${labour.id}')">
+                                ✏️ Edit
+                            </button>
+
+                            <button
+                                class="small-btn delete-btn"
+                                onclick="deleteLabour('${labour.id}')">
+                                🗑️ Delete
+                            </button>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+            `;
+
+        }).join("");
+
+}
+
+
+/* =========================================
+   DELETE LABOUR
+========================================= */
+
+function deleteLabour(id){
+
+    const labour =
+        labours.find(function(item){
+
+            return item.id === id;
+
+        });
+
+
+    if(!labour){
+        return;
+    }
+
+
+    const confirmed =
+        confirm(
+            "Delete " +
+            labour.name +
+            " from the labour list?"
+        );
+
+
+    if(!confirmed){
+        return;
+    }
+
+
+    /* Remove labour */
+
+    labours =
+        labours.filter(function(item){
+
+            return item.id !== id;
+
+        });
+
+
+    /* Remove their attendance */
+
+    attendance =
+        attendance.filter(function(item){
+
+            return item.labourId !== id;
+
+        });
+
+
+    /* Save */
+
+    saveData();
+
+
+    /* Refresh */
+
+    refreshAll();
+
+
+    showToast(
+        labour.name + " deleted."
+    );
+
+}
+
+
+/* =========================================
+   AUTO UPDATE RATE DISPLAY
+========================================= */
+
+document.addEventListener(
+    "input",
+    function(event){
+
+        if(event.target.id === "dailyRate"){
+
+            const value =
+                Number(event.target.value) || 0;
+
+            if(value < 0){
+
+                event.target.value = 0;
+
+            }
+
+        }
+
+    }
+);
+
+
+/* =========================================
+   PART 6 CONTINUES BELOW
+========================================= */
+
+</script>
+<script>
+
+/* =========================================
+   EDIT LABOUR
+========================================= */
+
+function openEditModal(id){
+
+    const labour = labours.find(function(item){
+
+        return item.id === id;
+
+    });
+
+
+    if(!labour){
+
+        showToast("Labour record not found.");
+
+        return;
+
+    }
+
+
+    document.getElementById("editLabourId").value =
+        labour.id;
+
+    document.getElementById("editName").value =
+        labour.name;
+
+    document.getElementById("editPhone").value =
+        labour.phone || "";
+
+    document.getElementById("editWork").value =
+        labour.work;
+
+    document.getElementById("editPaymentType").value =
+        labour.paymentType;
+
+    document.getElementById("editRate").value =
+        labour.dailyRate;
+
+    document.getElementById("editJoining").value =
+        labour.joiningDate;
+
+
+    document
+        .getElementById("editModal")
+        .classList.add("show");
+
+}
+
+
+/* =========================================
+   CLOSE EDIT MODAL
+========================================= */
+
+function closeEditModal(){
+
+    document
+        .getElementById("editModal")
+        .classList.remove("show");
+
+}
+
+
+/* =========================================
+   UPDATE LABOUR
+========================================= */
+
+function updateLabour(){
+
+    const id =
+        document.getElementById("editLabourId")
+        .value;
+
+
+    const name =
+        document.getElementById("editName")
+        .value.trim();
+
+
+    const phone =
+        document.getElementById("editPhone")
+        .value.trim();
+
+
+    const work =
+        document.getElementById("editWork")
+        .value;
+
+
+    const paymentType =
+        document.getElementById("editPaymentType")
+        .value;
+
+
+    const rate =
+        Number(
+            document.getElementById("editRate")
+            .value
+        );
+
+
+    const joining =
+        document.getElementById("editJoining")
+        .value;
+
+
+    /* Validate */
+
+    if(!name){
+
+        showToast(
+            "Please enter labour name."
+        );
+
+        return;
+
+    }
+
+
+    if(!rate || rate <= 0){
+
+        showToast(
+            "Please enter a valid daily rate."
+        );
+
+        return;
+
+    }
+
+
+    if(!joining){
+
+        showToast(
+            "Please select joining date."
+        );
+
+        return;
+
+    }
+
+
+    /* Find labour */
+
+    const index =
+        labours.findIndex(function(item){
+
+            return item.id === id;
+
+        });
+
+
+    if(index === -1){
+
+        showToast(
+            "Labour record not found."
+        );
+
+        return;
+
+    }
+
+
+    /* Update */
+
+    labours[index] = {
+
+        ...labours[index],
+
+        name:name,
+
+        phone:phone,
+
+        work:work,
+
+        paymentType:paymentType,
+
+        dailyRate:rate,
+
+        joiningDate:joining,
+
+        updatedAt:new Date().toISOString()
+
+    };
+
+
+    /* Save */
+
+    saveData();
+
+
+    /* Refresh */
+
+    refreshAll();
+
+
+    /* Close */
+
+    closeEditModal();
+
+
+    showToast(
+        name + " updated successfully!"
+    );
+
+}
+
+
+/* =========================================
+   CLOSE MODAL WHEN CLICKING OUTSIDE
+========================================= */
+
+document.addEventListener(
+    "click",
+    function(event){
+
+        const modal =
+            document.getElementById("editModal");
+
+        if(
+            event.target === modal
+        ){
+
+            closeEditModal();
+
+        }
+
+    }
+);
+
+
+/* =========================================
+   ESCAPE KEY CLOSES MODAL
+========================================= */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Escape"){
+
+            closeEditModal();
+
+        }
+
+    }
+);
+
+
+/* =========================================
+   LABOUR COUNT LIMIT
+========================================= */
+
+function canAddLabour(){
+
+    /*
+       Your dad's factory normally has
+       around 6–15 labourers.
+       
+       The system allows up to 100 records
+       so the website remains flexible.
+    */
+
+    return labours.length < 100;
+
+}
+
+
+/* =========================================
+   CHECK BEFORE ADDING LABOUR
+========================================= */
+
+const originalSaveLabour = saveLabour;
+
+
+/*
+   This wrapper keeps the original
+   validation while checking the limit.
+*/
+
+saveLabour = function(){
+
+    if(!canAddLabour()){
+
+        showToast(
+            "Labour limit reached."
+        );
+
+        return;
+
+    }
+
+
+    originalSaveLabour();
+
+};
+
+
+/* =========================================
+   QUICK LABOUR SEARCH
+========================================= */
+
+function clearLabourSearch(){
+
+    const input =
+        document.getElementById(
+            "labourSearch"
+        );
+
+
+    if(input){
+
+        input.value = "";
+
+        displayLabours();
+
+    }
+
+}
+
+
+/* =========================================
+   PART 7 CONTINUES BELOW
+========================================= */
+
+</script>
+<script>
+
+/* =========================================
+   ATTENDANCE SYSTEM
+========================================= */
+
+
+/* =========================================
+   GET ATTENDANCE RECORD
+========================================= */
+
+function getAttendanceRecord(labourId, date){
+
+    return attendance.find(function(item){
+
+        return (
+            item.labourId === labourId &&
+            item.date === date
+        );
+
+    });
+
+}
+
+
+/* =========================================
+   CALCULATE PAYABLE WAGE
+========================================= */
+
+function calculateWage(rate, status){
+
+    rate = Number(rate) || 0;
+
+
+    if(status === "present"){
+
+        return rate;
+
+    }
+
+
+    if(status === "half"){
+
+        return rate / 2;
+
+    }
+
+
+    return 0;
+
+}
+
+
+/* =========================================
+   DISPLAY ATTENDANCE
+========================================= */
+
+function displayAttendance(){
+
+    const tbody =
+        document.getElementById(
+            "attendanceTableBody"
+        );
+
+
+    if(!tbody){
+        return;
+    }
+
+
+    const dateInput =
+        document.getElementById(
+            "attendanceDate"
+        );
+
+
+    const selectedDate =
+        dateInput && dateInput.value
+        ? dateInput.value
+        : getToday();
+
+
+    /* No labour */
+
+    if(labours.length === 0){
+
+        tbody.innerHTML = `
+
+            <tr>
+
+                <td colspan="5">
+
+                    <div class="empty">
+
+                        <div class="empty-icon">
+                            👷
+                        </div>
+
+                        <p>
+                            No labour added yet.
+                        </p>
+
+                        <p style="
+                            margin-top:6px;
+                            font-size:12px;
+                        ">
+                            Add labour first from
+                            the Labour section.
+                        </p>
+
+                    </div>
+
+                </td>
+
+            </tr>
+
+        `;
+
+        return;
+
+    }
+
+
+    /* Create rows */
+
+    tbody.innerHTML =
+        labours.map(function(labour,index){
+
+            const record =
+                getAttendanceRecord(
+                    labour.id,
+                    selectedDate
+                );
+
+
+            const status =
+                record
+                ? record.status
+                : "absent";
+
+
+            const payable =
+                calculateWage(
+                    labour.dailyRate,
+                    status
+                );
+
+
+            return `
+
+                <tr>
+
+                    <td>
+                        ${index + 1}
+                    </td>
+
+                    <td>
+                        <strong>
+                            ${escapeHTML(labour.name)}
+                        </strong>
+                    </td>
+
+                    <td>
+                        ${money(labour.dailyRate)}
+                    </td>
+
+                    <td>
+
+                        <select
+                            class="attendance-select"
+                            onchange="
+                                updateAttendance(
+                                    '${labour.id}',
+                                    '${selectedDate}',
+                                    this.value
+                                )
+                            "
+                        >
+
+                            <option
+                                value="present"
+                                ${status === "present"
+                                ? "selected"
+                                : ""}
+                            >
+                                Present
+                            </option>
+
+                            <option
+                                value="half"
+                                ${status === "half"
+                                ? "selected"
+                                : ""}
+                            >
+                                Half Day
+                            </option>
+
+                            <option
+                                value="absent"
+                                ${status === "absent"
+                                ? "selected"
+                                : ""}
+                            >
+                                Absent
+                            </option>
+
+                        </select>
+
+                    </td>
+
+                    <td>
+
+                        <strong>
+                            ${money(payable)}
+                        </strong>
+
+                    </td>
+
+                </tr>
+
+            `;
+
+        }).join("");
+
+}
+
+
+/* =========================================
+   UPDATE ATTENDANCE
+========================================= */
+
+function updateAttendance(
+    labourId,
+    date,
+    status
+){
+
+    const labour =
+        labours.find(function(item){
+
+            return item.id === labourId;
+
+        });
+
+
+    if(!labour){
+        return;
+    }
+
+
+    const existingIndex =
+        attendance.findIndex(function(item){
+
+            return (
+                item.labourId === labourId &&
+                item.date === date
+            );
+
+        });
+
+
+    const wage =
+        calculateWage(
+            labour.dailyRate,
+            status
+        );
+
+
+    const record = {
+
+        id:
+            existingIndex >= 0
+            ? attendance[existingIndex].id
+            : createId(),
+
+        labourId:labourId,
+
+        date:date,
+
+        status:status,
+
+        wage:wage
+
+    };
+
+
+    if(existingIndex >= 0){
+
+        attendance[existingIndex] = record;
+
+    }else{
+
+        attendance.push(record);
+
+    }
+
+
+    saveData();
+
+
+    displayAttendance();
+
+    updateDashboard();
+
+    updateReports();
+
+
+    showToast(
+        labour.name +
+        " marked " +
+        status +
+        "."
+    );
+
+}
+
+
+/* =========================================
+   MARK ALL PRESENT
+========================================= */
+
+function markAllPresent(){
+
+    if(labours.length === 0){
+
+        showToast(
+            "Add labour first."
+        );
+
+        return;
+
+    }
+
+
+    const dateInput =
+        document.getElementById(
+            "attendanceDate"
+        );
+
+
+    const date =
+        dateInput && dateInput.value
+        ? dateInput.value
+        : getToday();
+
+
+    labours.forEach(function(labour){
+
+        const existingIndex =
+            attendance.findIndex(function(item){
+
+                return (
+                    item.labourId === labour.id &&
+                    item.date === date
+                );
+
+            });
+
+
+        const record = {
+
+            id:
+                existingIndex >= 0
+                ? attendance[existingIndex].id
+                : createId(),
+
+            labourId:labour.id,
+
+            date:date,
+
+            status:"present",
+
+            wage:Number(labour.dailyRate) || 0
+
+        };
+
+
+        if(existingIndex >= 0){
+
+            attendance[existingIndex] =
+                record;
+
+        }else{
+
+            attendance.push(record);
+
+        }
+
+    });
+
+
+    saveData();
+
+
+    displayAttendance();
+
+    updateDashboard();
+
+    updateReports();
+
+
+    showToast(
+        "All labour marked Present."
+    );
+
+}
+
+
+/* =========================================
+   CHANGE ATTENDANCE DATE
+========================================= */
+
+const attendanceDateElement =
+    document.getElementById(
+        "attendanceDate"
+    );
+
+
+if(attendanceDateElement){
+
+    attendanceDateElement.addEventListener(
+        "change",
+        function(){
+
+            displayAttendance();
+
+        }
+    );
+
+}
+
+
+/* =========================================
+   GET TOTAL WAGE FOR DATE
+========================================= */
+
+function getDailyWageTotal(date){
+
+    return attendance
+        .filter(function(item){
+
+            return (
+                item.date === date &&
+                (
+                    item.status === "present" ||
+                    item.status === "half"
+                )
+            );
+
+        })
+        .reduce(function(total,item){
+
+            return total + (
+                Number(item.wage) || 0
+            );
+
+        },0);
+
+}
+
+
+/* =========================================
+   GET PRESENT COUNT
+========================================= */
+
+function getPresentCount(date){
+
+    return attendance.filter(function(item){
+
+        return (
+            item.date === date &&
+            item.status === "present"
+        );
+
+    }).length;
+
+}
+
+
+/* =========================================
+   GET HALF-DAY COUNT
+========================================= */
+
+function getHalfDayCount(date){
+
+    return attendance.filter(function(item){
+
+        return (
+            item.date === date &&
+            item.status === "half"
+        );
+
+    }).length;
+
+}
+
+
+/* =========================================
+   PART 8 CONTINUES BELOW
+========================================= */
+
+</script>
+<script>
+
+/* =========================================
+   PAYMENT SYSTEM
+========================================= */
+
+
+/* =========================================
+   UPDATE PAYMENT LABOUR LIST
+========================================= */
+
+function updatePaymentLabourList(){
+
+    const select =
+        document.getElementById(
+            "paymentLabour"
+        );
+
+
+    if(!select){
+        return;
+    }
+
+
+    const currentValue =
+        select.value;
+
+
+    select.innerHTML = `
+        <option value="">
+            Select Labour
+        </option>
+    `;
+
+
+    labours.forEach(function(labour){
+
+        const option =
+            document.createElement("option");
+
+        option.value = labour.id;
+
+        option.textContent =
+            labour.name +
+            " - " +
+            money(labour.dailyRate) +
+            "/day";
+
+        select.appendChild(option);
+
+    });
+
+
+    if(
+        labours.some(function(labour){
+
+            return labour.id === currentValue;
+
+        })
+    ){
+
+        select.value = currentValue;
+
+    }
+
+}
+
+
+/* =========================================
+   SAVE PAYMENT
+========================================= */
+
+function savePayment(){
+
+    const labourId =
+        document.getElementById(
+            "paymentLabour"
+        ).value;
+
+
+    const date =
+        document.getElementById(
+            "paymentDate"
+        ).value;
+
+
+    const amount =
+        Number(
+            document.getElementById(
+                "paymentAmount"
+            ).value
+        );
+
+
+    const method =
+        document.getElementById(
+            "paymentMethod"
+        ).value;
+
+
+    /* Validation */
+
+    if(!labourId){
+
+        showToast(
+            "Please select a labour."
+        );
+
+        return;
+
+    }
+
+
+    if(!date){
+
+        showToast(
+            "Please select payment date."
+        );
+
+        return;
+
+    }
+
+
+    if(!amount || amount <= 0){
+
+        showToast(
+            "Please enter a valid amount."
+        );
+
+        return;
+
+    }
+
+
+    /* Find labour */
+
+    const labour =
+        labours.find(function(item){
+
+            return item.id === labourId;
+
+        });
+
+
+    if(!labour){
+
+        showToast(
+            "Labour not found."
+        );
+
+        return;
+
+    }
+
+
+    /* Create payment */
+
+    const payment = {
+
+        id:createId(),
+
+        labourId:labourId,
+
+        date:date,
+
+        amount:amount,
+
+        method:method,
+
+        createdAt:new Date().toISOString()
+
+    };
+
+
+    payments.push(payment);
+
+
+    /* Save */
+
+    saveData();
+
+
+    /* Reset amount */
+
+    document.getElementById(
+        "paymentAmount"
+    ).value = "";
+
+
+    /* Refresh */
+
+    refreshAll();
+
+
+    showToast(
+        money(amount) +
+        " payment recorded for " +
+        labour.name
+    );
+
+}
+
+
+/* =========================================
+   DISPLAY PAYMENTS
+========================================= */
+
+function displayPayments(){
+
+    const tbody =
+        document.getElementById(
+            "paymentTableBody"
+        );
+
+
+    if(!tbody){
+        return;
+    }
+
+
+    if(payments.length === 0){
+
+        tbody.innerHTML = `
+
+            <tr>
+
+                <td colspan="5">
+
+                    <div class="empty">
+
+                        <div class="empty-icon">
+                            💰
+                        </div>
+
+                        <p>
+                            No payment records yet.
+                        </p>
+
+                    </div>
+
+                </td>
+
+            </tr>
+
+        `;
+
+        return;
+
+    }
+
+
+    /* Latest payments first */
+
+    const sorted =
+        [...payments].sort(function(a,b){
+
+            return b.date.localeCompare(a.date);
+
+        });
+
+
+    tbody.innerHTML =
+        sorted.map(function(payment){
+
+            const labour =
+                labours.find(function(item){
+
+                    return item.id ===
+                        payment.labourId;
+
+                });
+
+
+            const labourName =
+                labour
+                ? labour.name
+                : "Deleted Labour";
+
+
+            return `
+
+                <tr>
+
+                    <td>
+                        ${formatDate(payment.date)}
+                    </td>
+
+                    <td>
+                        <strong>
+                            ${escapeHTML(labourName)}
+                        </strong>
+                    </td>
+
+                    <td>
+                        <strong class="text-success">
+                            ${money(payment.amount)}
+                        </strong>
+                    </td>
+
+                    <td>
+                        ${escapeHTML(payment.method)}
+                    </td>
+
+                    <td>
+
+                        <button
+                            class="small-btn delete-btn"
+                            onclick="
+                                deletePayment('${payment.id}')
+                            "
+                        >
+                            🗑️ Delete
+                        </button>
+
+                    </td>
+
+                </tr>
+
+            `;
+
+        }).join("");
+
+}
+
+
+/* =========================================
+   DELETE PAYMENT
+========================================= */
+
+function deletePayment(id){
+
+    const payment =
+        payments.find(function(item){
+
+            return item.id === id;
+
+        });
+
+
+    if(!payment){
+
+        showToast(
+            "Payment record not found."
+        );
+
+        return;
+
+    }
+
+
+    const labour =
+        labours.find(function(item){
+
+            return item.id ===
+                payment.labourId;
+
+        });
+
+
+    const name =
+        labour
+        ? labour.name
+        : "this labour";
+
+
+    const confirmed =
+        confirm(
+            "Delete payment of " +
+            money(payment.amount) +
+            " for " +
+            name +
+            "?"
+        );
+
+
+    if(!confirmed){
+        return;
+    }
+
+
+    payments =
+        payments.filter(function(item){
+
+            return item.id !== id;
+
+        });
+
+
+    saveData();
+
+
+    refreshAll();
+
+
+    showToast(
+        "Payment deleted successfully."
+    );
+
+}
+
+
+/* =========================================
+   GET TOTAL PAYMENTS
+========================================= */
+
+function getTotalPayments(){
+
+    return payments.reduce(
+        function(total,payment){
+
+            return total +
+                (Number(payment.amount) || 0);
+
+        },
+        0
+    );
+
+}
+
+
+/* =========================================
+   GET LABOUR PAYMENTS
+========================================= */
+
+function getLabourPayments(labourId){
+
+    return payments
+        .filter(function(payment){
+
+            return payment.labourId === labourId;
+
+        })
+        .reduce(function(total,payment){
+
+            return total +
+                (Number(payment.amount) || 0);
+
+        },0);
+
+}
+
+
+/* =========================================
+   PAYMENT FORM AUTO RATE
+========================================= */
+
+const paymentLabourElement =
+    document.getElementById(
+        "paymentLabour"
+    );
+
+
+if(paymentLabourElement){
+
+    paymentLabourElement.addEventListener(
+        "change",
+        function(){
+
+            const labour =
+                labours.find(function(item){
+
+                    return item.id ===
+                        this.value;
+
+                },this);
+
+
+            if(
+                labour &&
+                !document.getElementById(
+                    "paymentAmount"
+                ).value
+            ){
+
+                document.getElementById(
+                    "paymentAmount"
+                ).value =
+                    labour.dailyRate;
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================
+   PART 9 CONTINUES BELOW
+========================================= */
+
+</script>
+<script>
+
+/* =========================================
+   DASHBOARD
+========================================= */
+
+
+/* =========================================
+   UPDATE DASHBOARD
+========================================= */
+
+function updateDashboard(){
+
+    const today = getToday();
+
+
+    /* -------------------------------------
+       TOTAL LABOUR
+    ------------------------------------- */
+
+    const totalLabour =
+        document.getElementById(
+            "totalLabour"
+        );
+
+
+    if(totalLabour){
+
+        totalLabour.textContent =
+            labours.length;
+
+    }
+
+
+    /* -------------------------------------
+       PRESENT TODAY
+    ------------------------------------- */
+
+    const presentToday =
+        document.getElementById(
+            "presentToday"
+        );
+
+
+    if(presentToday){
+
+        presentToday.textContent =
+            getPresentCount(today);
+
+    }
+
+
+    /* -------------------------------------
+       TODAY'S WAGES
+    ------------------------------------- */
+
+    const todayWages =
+        document.getElementById(
+            "todayWages"
+        );
+
+
+    if(todayWages){
+
+        todayWages.textContent =
+            money(
+                getDailyWageTotal(today)
+            );
+
+    }
+
+
+    /* -------------------------------------
+       PENDING PAYMENT
+    ------------------------------------- */
+
+    const pendingPayment =
+        document.getElementById(
+            "pendingPayment"
+        );
+
+
+    if(pendingPayment){
+
+        const earned =
+            getTotalEarned();
+
+        const paid =
+            getTotalPayments();
+
+        const pending =
+            Math.max(
+                0,
+                earned - paid
+            );
+
+
+        pendingPayment.textContent =
+            money(pending);
+
+    }
+
+}
+
+
+/* =========================================
+   GET TOTAL EARNED
+========================================= */
+
+function getTotalEarned(){
+
+    return attendance.reduce(
+        function(total,item){
+
+            return total +
+                (Number(item.wage) || 0);
+
+        },
+        0
+    );
+
+}
+
+
+/* =========================================
+   GET LABOUR EARNED
+========================================= */
+
+function getLabourEarned(labourId){
+
+    return attendance
+        .filter(function(item){
+
+            return item.labourId === labourId;
+
+        })
+        .reduce(function(total,item){
+
+            return total +
+                (Number(item.wage) || 0);
+
+        },0);
+
+}
+
+
+/* =========================================
+   GET LABOUR ATTENDANCE COUNT
+========================================= */
+
+function getLabourAttendanceCount(
+    labourId
+){
+
+    return attendance.filter(
+        function(item){
+
+            return (
+                item.labourId === labourId &&
+                item.status === "present"
+            );
+
+        }
+    ).length;
+
+}
+
+
+/* =========================================
+   GET LABOUR HALF DAYS
+========================================= */
+
+function getLabourHalfDays(
+    labourId
+){
+
+    return attendance.filter(
+        function(item){
+
+            return (
+                item.labourId === labourId &&
+                item.status === "half"
+            );
+
+        }
+    ).length;
+
+}
+
+
+/* =========================================
+   GET LABOUR TOTAL DAYS
+========================================= */
+
+function getLabourTotalDays(
+    labourId
+){
+
+    return attendance.filter(
+        function(item){
+
+            return item.labourId === labourId;
+
+        }
+    ).length;
+
+}
+
+
+/* =========================================
+   UPDATE REPORT SUMMARY
+========================================= */
+
+function updateReportSummary(){
+
+    const workers =
+        document.getElementById(
+            "reportWorkers"
+        );
+
+
+    const earned =
+        document.getElementById(
+            "reportEarned"
+        );
+
+
+    const paid =
+        document.getElementById(
+            "reportPaid"
+        );
+
+
+    const balance =
+        document.getElementById(
+            "reportBalance"
+        );
+
+
+    const totalEarned =
+        getTotalEarned();
+
+
+    const totalPaid =
+        getTotalPayments();
+
+
+    const remaining =
+        Math.max(
+            0,
+            totalEarned - totalPaid
+        );
+
+
+    if(workers){
+
+        workers.textContent =
+            labours.length;
+
+    }
+
+
+    if(earned){
+
+        earned.textContent =
+            money(totalEarned);
+
+    }
+
+
+    if(paid){
+
+        paid.textContent =
+            money(totalPaid);
+
+    }
+
+
+    if(balance){
+
+        balance.textContent =
+            money(remaining);
+
+    }
+
+}
+
+
+/* =========================================
+   GET TODAY'S TOTAL ATTENDANCE
+========================================= */
+
+function getTodayAttendance(){
+
+    const today = getToday();
+
+
+    return attendance.filter(
+        function(item){
+
+            return item.date === today;
+
+        }
+    );
+
+}
+
+
+/* =========================================
+   TODAY'S ABSENT COUNT
+========================================= */
+
+function getAbsentCount(date){
+
+    return attendance.filter(
+        function(item){
+
+            return (
+                item.date === date &&
+                item.status === "absent"
+            );
+
+        }
+    ).length;
+
+}
+
+
+/* =========================================
+   ATTENDANCE SUMMARY
+========================================= */
+
+function getAttendanceSummary(date){
+
+    const records =
+        attendance.filter(
+            function(item){
+
+                return item.date === date;
+
+            }
+        );
+
+
+    return {
+
+        present:
+            records.filter(
+                function(item){
+
+                    return item.status === "present";
+
+                }
+            ).length,
+
+        half:
+            records.filter(
+                function(item){
+
+                    return item.status === "half";
+
+                }
+            ).length,
+
+        absent:
+            records.filter(
+                function(item){
+
+                    return item.status === "absent";
+
+                }
+            ).length,
+
+        wages:
+            records.reduce(
+                function(total,item){
+
+                    return total +
+                        (Number(item.wage) || 0);
+
+                },
+                0
+            )
+
+    };
+
+}
+
+
+/* =========================================
+   TOTAL WORKING DAYS
+========================================= */
+
+function getWorkingDays(){
+
+    const uniqueDates =
+        new Set(
+            attendance
+                .filter(function(item){
+
+                    return (
+                        item.status === "present" ||
+                        item.status === "half"
+                    );
+
+                })
+                .map(function(item){
+
+                    return item.date;
+
+                })
+        );
+
+
+    return uniqueDates.size;
+
+}
+
+
+/* =========================================
+   PART 10 CONTINUES BELOW
+========================================= */
+
+</script>
+<script>
+
+/* =========================================
+   REPORTS
+========================================= */
+
+
+/* =========================================
+   UPDATE REPORTS
+========================================= */
+
+function updateReports(){
+
+    updateReportSummary();
+
+    displayReportTable();
+
+}
+
+
+/* =========================================
+   DISPLAY REPORT TABLE
+========================================= */
+
+function displayReportTable(){
+
+    const tbody =
+        document.getElementById(
+            "reportTableBody"
+        );
+
+
+    if(!tbody){
+        return;
+    }
+
+
+    /* No labour */
+
+    if(labours.length === 0){
+
+        tbody.innerHTML = `
+
+            <tr>
+
+                <td colspan="7">
+
+                    <div class="empty">
+
+                        <div class="empty-icon">
+                            📊
+                        </div>
+
+                        <p>
+                            No report data available.
+                        </p>
+
+                    </div>
+
+                </td>
+
+            </tr>
+
+        `;
+
+        return;
+
+    }
+
+
+    tbody.innerHTML =
+        labours.map(function(labour){
+
+            const totalDays =
+                getLabourTotalDays(
+                    labour.id
+                );
+
+
+            const present =
+                getLabourAttendanceCount(
+                    labour.id
+                );
+
+
+            const halfDays =
+                getLabourHalfDays(
+                    labour.id
+                );
+
+
+            const earned =
+                getLabourEarned(
+                    labour.id
+                );
+
+
+            const paid =
+                getLabourPayments(
+                    labour.id
+                );
+
+
+            const balance =
+                Math.max(
+                    0,
+                    earned - paid
+                );
+
+
+            return `
+
+                <tr>
+
+                    <td>
+
+                        <strong>
+                            ${escapeHTML(
+                                labour.name
+                            )}
+                        </strong>
+
+                        <div style="
+                            font-size:11px;
+                            color:#718096;
+                            margin-top:4px;
+                        ">
+                            ${escapeHTML(
+                                labour.work
+                            )}
+                        </div>
+
+                    </td>
+
+
+                    <td>
+                        ${totalDays}
+                    </td>
+
+
+                    <td>
+                        <span class="badge badge-present">
+                            ${present}
+                        </span>
+                    </td>
+
+
+                    <td>
+                        <span class="badge badge-half">
+                            ${halfDays}
+                        </span>
+                    </td>
+
+
+                    <td>
+                        <strong>
+                            ${money(earned)}
+                        </strong>
+                    </td>
+
+
+                    <td>
+                        <strong class="text-success">
+                            ${money(paid)}
+                        </strong>
+                    </td>
+
+
+                    <td>
+
+                        <strong
+                            class="${
+                                balance > 0
+                                ? "text-danger"
+                                : "text-success"
+                            }"
+                        >
+                            ${money(balance)}
+                        </strong>
+
+                    </td>
+
+                </tr>
+
+            `;
+
+        }).join("");
+
+}
+
+
+/* =========================================
+   LABOUR INDIVIDUAL REPORT
+========================================= */
+
+function getLabourReport(labourId){
+
+    const labour =
+        labours.find(function(item){
+
+            return item.id === labourId;
+
+        });
+
+
+    if(!labour){
+
+        return null;
+
+    }
+
+
+    const totalDays =
+        getLabourTotalDays(labourId);
+
+
+    const present =
+        getLabourAttendanceCount(labourId);
+
+
+    const halfDays =
+        getLabourHalfDays(labourId);
+
+
+    const earned =
+        getLabourEarned(labourId);
+
+
+    const paid =
+        getLabourPayments(labourId);
+
+
+    const balance =
+        Math.max(
+            0,
+            earned - paid
+        );
+
+
+    return {
+
+        name:labour.name,
+
+        phone:labour.phone,
+
+        work:labour.work,
+
+        rate:labour.dailyRate,
+
+        totalDays:totalDays,
+
+        present:present,
+
+        halfDays:halfDays,
+
+        absent:
+            Math.max(
+                0,
+                totalDays -
+                present -
+                halfDays
+            ),
+
+        earned:earned,
+
+        paid:paid,
+
+        balance:balance
+
+    };
+
+}
+
+
+/* =========================================
+   REPORT DATE RANGE
+========================================= */
+
+function getAttendanceBetween(
+    startDate,
+    endDate
+){
+
+    return attendance.filter(
+        function(item){
+
+            return (
+                item.date >= startDate &&
+                item.date <= endDate
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================
+   MONTHLY REPORT
+========================================= */
+
+function getMonthlyReport(
+    year,
+    month
+){
+
+    const prefix =
+        year +
+        "-" +
+        String(month).padStart(2,"0");
+
+
+    const records =
+        attendance.filter(
+            function(item){
+
+                return item.date.startsWith(
+                    prefix
+                );
+
+            }
+        );
+
+
+    const earned =
+        records.reduce(
+            function(total,item){
+
+                return total +
+                    (Number(item.wage) || 0);
+
+            },
+            0
+        );
+
+
+    const paid =
+        payments
+            .filter(function(payment){
+
+                return payment.date.startsWith(
+                    prefix
+                );
+
+            })
+            .reduce(function(total,payment){
+
+                return total +
+                    (Number(payment.amount) || 0);
+
+            },0);
+
+
+    return {
+
+        records:records,
+
+        earned:earned,
+
+        paid:paid,
+
+        balance:Math.max(
+            0,
+            earned - paid
+        )
+
+    };
+
+}
+
+
+/* =========================================
+   CURRENT MONTH REPORT
+========================================= */
+
+function getCurrentMonthReport(){
+
+    const now = new Date();
+
+
+    return getMonthlyReport(
+        now.getFullYear(),
+        now.getMonth() + 1
+    );
+
+}
+
+
+/* =========================================
+   REPORT PRINT
+========================================= */
+
+function printReport(){
+
+    const originalTitle =
+        document.title;
+
+
+    document.title =
+        "Labour Book Report";
+
+
+    window.print();
+
+
+    setTimeout(function(){
+
+        document.title =
+            originalTitle;
+
+    },500);
+
+}
+
+
+/* =========================================
+   EXPORT REPORT DATA
+========================================= */
+
+function getReportData(){
+
+    return labours.map(
+        function(labour){
+
+            const report =
+                getLabourReport(
+                    labour.id
+                );
+
+
+            return {
+
+                name:labour.name,
+
+                phone:labour.phone,
+
+                work:labour.work,
+
+                dailyRate:labour.dailyRate,
+
+                totalDays:
+                    report.totalDays,
+
+                present:
+                    report.present,
+
+                halfDays:
+                    report.halfDays,
+
+                absent:
+                    report.absent,
+
+                earned:
+                    report.earned,
+
+                paid:
+                    report.paid,
+
+                balance:
+                    report.balance
+
+            };
+
+        }
+    );
+
+}
+
+
+/* =========================================
+   PART 11 CONTINUES BELOW
+========================================= */
+
+</script>
+<script>
+
+/* =========================================
+   REPORT FILTERS & EXPORT
+========================================= */
+
+
+/* =========================================
+   CREATE CSV
+========================================= */
+
+function exportReportCSV(){
+
+    if(labours.length === 0){
+
+        showToast(
+            "No labour data to export",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    const data =
+        getReportData();
+
+
+    let csv =
+        "Labour Name,Phone,Work,Daily Rate,Total Days,Present,Half Days,Absent,Earned,Paid,Balance\n";
+
+
+    data.forEach(function(item){
+
+        csv += [
+
+            csvValue(item.name),
+
+            csvValue(item.phone),
+
+            csvValue(item.work),
+
+            item.dailyRate,
+
+            item.totalDays,
+
+            item.present,
+
+            item.halfDays,
+
+            item.absent,
+
+            item.earned,
+
+            item.paid,
+
+            item.balance
+
+        ].join(",") + "\n";
+
+    });
+
+
+    downloadFile(
+        csv,
+        "labour-report.csv",
+        "text/csv"
+    );
+
+
+    showToast(
+        "Report exported successfully"
+    );
+
+}
+
+
+/* =========================================
+   CSV VALUE
+========================================= */
+
+function csvValue(value){
+
+    value =
+        value === null ||
+        value === undefined
+        ? ""
+        : String(value);
+
+
+    return '"' +
+        value.replace(
+            /"/g,
+            '""'
+        ) +
+        '"';
+
+}
+
+
+/* =========================================
+   DOWNLOAD FILE
+========================================= */
+
+function downloadFile(
+    content,
+    fileName,
+    type
+){
+
+    const blob =
+        new Blob(
+            [content],
+            {type:type}
+        );
+
+
+    const url =
+        URL.createObjectURL(blob);
+
+
+    const link =
+        document.createElement("a");
+
+
+    link.href = url;
+
+    link.download =
+        fileName;
+
+
+    document.body.appendChild(
+        link
+    );
+
+
+    link.click();
+
+
+    document.body.removeChild(
+        link
+    );
+
+
+    URL.revokeObjectURL(
+        url
+    );
+
+}
+
+
+/* =========================================
+   REPORT SEARCH
+========================================= */
+
+function searchReport(){
+
+    const input =
+        document.getElementById(
+            "reportSearch"
+        );
+
+
+    if(!input){
+
+        return;
+
+    }
+
+
+    const query =
+        input.value
+            .toLowerCase()
+            .trim();
+
+
+    const rows =
+        document.querySelectorAll(
+            "#reportTableBody tr"
+        );
+
+
+    rows.forEach(function(row){
+
+        const text =
+            row.textContent
+                .toLowerCase();
+
+
+        if(
+            text.includes(query)
+        ){
+
+            row.style.display = "";
+
+        }else{
+
+            row.style.display =
+                "none";
+
+        }
+
+    });
+
+}
+
+
+/* =========================================
+   FILTER BY WORK TYPE
+========================================= */
+
+function filterReportByWork(){
+
+    const select =
+        document.getElementById(
+            "reportWorkFilter"
+        );
+
+
+    if(!select){
+
+        return;
+
+    }
+
+
+    const selected =
+        select.value
+            .toLowerCase();
+
+
+    const rows =
+        document.querySelectorAll(
+            "#reportTableBody tr"
+        );
+
+
+    rows.forEach(function(row){
+
+        if(!selected){
+
+            row.style.display = "";
+
+            return;
+
+        }
+
+
+        const text =
+            row.textContent
+                .toLowerCase();
+
+
+        row.style.display =
+            text.includes(selected)
+            ? ""
+            : "none";
+
+    });
+
+}
+
+
+/* =========================================
+   SORT REPORT BY NAME
+========================================= */
+
+function sortReportByName(){
+
+    labours.sort(
+        function(a,b){
+
+            return a.name
+                .localeCompare(
+                    b.name
+                );
+
+        }
+    );
+
+
+    displayReportTable();
+
+    saveData();
+
+}
+
+
+/* =========================================
+   SORT REPORT BY BALANCE
+========================================= */
+
+function sortReportByBalance(){
+
+    labours.sort(
+        function(a,b){
+
+            const balanceA =
+                Math.max(
+                    0,
+                    getLabourEarned(a.id) -
+                    getLabourPayments(a.id)
+                );
+
+
+            const balanceB =
+                Math.max(
+                    0,
+                    getLabourEarned(b.id) -
+                    getLabourPayments(b.id)
+                );
+
+
+            return balanceB -
+                balanceA;
+
+        }
+    );
+
+
+    displayReportTable();
+
+}
+
+
+/* =========================================
+   REPORT REFRESH BUTTON
+========================================= */
+
+function refreshReports(){
+
+    updateReports();
+
+    showToast(
+        "Reports refreshed"
+    );
+
+}
+
+
+/* =========================================
+   SAVE REPORT NOTE
+========================================= */
+
+function saveReportNote(){
+
+    const note =
+        document.getElementById(
+            "reportNote"
+        );
+
+
+    if(!note){
+
+        return;
+
+    }
+
+
+    localStorage.setItem(
+        "labourBook_reportNote",
+        note.value
+    );
+
+
+    showToast(
+        "Report note saved"
+    );
+
+}
+
+
+/* =========================================
+   LOAD REPORT NOTE
+========================================= */
+
+function loadReportNote(){
+
+    const note =
+        document.getElementById(
+            "reportNote"
+        );
+
+
+    if(!note){
+
+        return;
+
+    }
+
+
+    note.value =
+        localStorage.getItem(
+            "labourBook_reportNote"
+        ) || "";
+
+}
+
+
+/* =========================================
+   PART 12 CONTINUES
+========================================= */
+
+</script>
+<script>
+
+/* =========================================
+   DASHBOARD ANALYTICS
+========================================= */
+
+
+/* =========================================
+   UPDATE DASHBOARD
+========================================= */
+
+function updateDashboard(){
+
+    const today =
+        getToday();
+
+
+    const totalLabour =
+        labours.length;
+
+
+    const presentToday =
+        getPresentCount(today);
+
+
+    const todayWages =
+        getDailyWageTotal(today);
+
+
+    const totalEarned =
+        getTotalEarned();
+
+
+    const totalPaid =
+        getTotalPayments();
+
+
+    const pending =
+        Math.max(
+            0,
+            totalEarned - totalPaid
+        );
+
+
+    const totalElement =
+        document.getElementById(
+            "totalLabour"
+        );
+
+
+    const presentElement =
+        document.getElementById(
+            "presentToday"
+        );
+
+
+    const wagesElement =
+        document.getElementById(
+            "todayWages"
+        );
+
+
+    const pendingElement =
+        document.getElementById(
+            "pendingPayment"
+        );
+
+
+    if(totalElement){
+
+        totalElement.textContent =
+            totalLabour;
+
+    }
+
+
+    if(presentElement){
+
+        presentElement.textContent =
+            presentToday;
+
+    }
+
+
+    if(wagesElement){
+
+        wagesElement.textContent =
+            money(todayWages);
+
+    }
+
+
+    if(pendingElement){
+
+        pendingElement.textContent =
+            money(pending);
+
+    }
+
+
+    updateTodaySummary();
+
+}
+
+
+/* =========================================
+   TODAY SUMMARY
+========================================= */
+
+function updateTodaySummary(){
+
+    const today =
+        getToday();
+
+
+    const summary =
+        getAttendanceSummary(
+            today
+        );
+
+
+    const present =
+        document.getElementById(
+            "todayPresentSummary"
+        );
+
+
+    const half =
+        document.getElementById(
+            "todayHalfSummary"
+        );
+
+
+    const absent =
+        document.getElementById(
+            "todayAbsentSummary"
+        );
+
+
+    const wages =
+        document.getElementById(
+            "todayWageSummary"
+        );
+
+
+    if(present){
+
+        present.textContent =
+            summary.present;
+
+    }
+
+
+    if(half){
+
+        half.textContent =
+            summary.half;
+
+    }
+
+
+    if(absent){
+
+        absent.textContent =
+            summary.absent;
+
+    }
+
+
+    if(wages){
+
+        wages.textContent =
+            money(summary.wages);
+
+    }
+
+}
+
+
+/* =========================================
+   WEEKLY ATTENDANCE
+========================================= */
+
+function getWeeklyAttendance(){
+
+    const result = [];
+
+    const today =
+        new Date();
+
+
+    for(let i = 6; i >= 0; i--){
+
+        const date =
+            new Date(today);
+
+
+        date.setDate(
+            today.getDate() - i
+        );
+
+
+        const dateString =
+            date.toISOString()
+                .split("T")[0];
+
+
+        const summary =
+            getAttendanceSummary(
+                dateString
+            );
+
+
+        result.push({
+
+            date:dateString,
+
+            present:
+                summary.present,
+
+            half:
+                summary.half,
+
+            absent:
+                summary.absent,
+
+            wages:
+                summary.wages
+
+        });
+
+    }
+
+
+    return result;
+
+}
+
+
+/* =========================================
+   WEEKLY WAGES
+========================================= */
+
+function getWeeklyWages(){
+
+    const weekly =
+        getWeeklyAttendance();
+
+
+    return weekly.reduce(
+        function(total,item){
+
+            return total +
+                item.wages;
+
+        },
+        0
+    );
+
+}
+
+
+/* =========================================
+   CURRENT MONTH EARNINGS
+========================================= */
+
+function getCurrentMonthEarnings(){
+
+    const report =
+        getCurrentMonthReport();
+
+
+    return report.earned;
+
+}
+
+
+/* =========================================
+   CURRENT MONTH PAYMENTS
+========================================= */
+
+function getCurrentMonthPayments(){
+
+    const report =
+        getCurrentMonthReport();
+
+
+    return report.paid;
+
+}
+
+
+/* =========================================
+   CURRENT MONTH BALANCE
+========================================= */
+
+function getCurrentMonthBalance(){
+
+    const report =
+        getCurrentMonthReport();
+
+
+    return report.balance;
+
+}
+
+
+/* =========================================
+   PAYMENT COUNT
+========================================= */
+
+function getPaymentCount(){
+
+    return payments.length;
+
+}
+
+
+/* =========================================
+   ATTENDANCE RECORD COUNT
+========================================= */
+
+function getAttendanceRecordCount(){
+
+    return attendance.length;
+
+}
+
+
+/* =========================================
+   ACTIVE LABOUR COUNT
+========================================= */
+
+function getActiveLabourCount(){
+
+    return labours.filter(
+        function(labour){
+
+            return labour.active !== false;
+
+        }
+    ).length;
+
+}
+
+
+/* =========================================
+   INACTIVE LABOUR COUNT
+========================================= */
+
+function getInactiveLabourCount(){
+
+    return labours.filter(
+        function(labour){
+
+            return labour.active === false;
+
+        }
+    ).length;
+
+}
+
+
+/* =========================================
+   DASHBOARD REFRESH
+========================================= */
+
+function refreshDashboard(){
+
+    updateDashboard();
+
+    updateReports();
+
+    displayLabours();
+
+    displayAttendance();
+
+    displayPayments();
+
+    updatePaymentLabourList();
+
+    showToast(
+        "Dashboard updated"
+    );
+
+}
+
+
+/* =========================================
+   PART 13 CONTINUES
+========================================= */
+
+</script>
+<script>
+
+/* =========================================
+   FACTORY SETTINGS
+========================================= */
+
+
+/* =========================================
+   LOAD SETTINGS
+========================================= */
+
+function loadSettings(){
+
+    const factoryName =
+        document.getElementById(
+            "factoryName"
+        );
+
+
+    const ownerName =
+        document.getElementById(
+            "ownerName"
+        );
+
+
+    const factoryPhone =
+        document.getElementById(
+            "factoryPhone"
+        );
+
+
+    const factoryAddress =
+        document.getElementById(
+            "factoryAddress"
+        );
+
+
+    if(factoryName){
+
+        factoryName.value =
+            settings.factoryName || "";
+
+    }
+
+
+    if(ownerName){
+
+        ownerName.value =
+            settings.ownerName || "";
+
+    }
+
+
+    if(factoryPhone){
+
+        factoryPhone.value =
+            settings.factoryPhone || "";
+
+    }
+
+
+    if(factoryAddress){
+
+        factoryAddress.value =
+            settings.factoryAddress || "";
+
+    }
+
+
+    updateFactoryBranding();
+
+}
+
+
+/* =========================================
+   SAVE FACTORY SETTINGS
+========================================= */
+
+function saveFactorySettings(){
+
+    const name =
+        document.getElementById(
+            "factoryName"
+        ).value.trim();
+
+
+    const owner =
+        document.getElementById(
+            "ownerName"
+        ).value.trim();
+
+
+    const phone =
+        document.getElementById(
+            "factoryPhone"
+        ).value.trim();
+
+
+    const address =
+        document.getElementById(
+            "factoryAddress"
+        ).value.trim();
+
+
+    settings.factoryName =
+        name || "My Factory";
+
+
+    settings.ownerName =
+        owner;
+
+
+    settings.factoryPhone =
+        phone;
+
+
+    settings.factoryAddress =
+        address;
+
+
+    saveData();
+
+    updateFactoryBranding();
+
+    showToast(
+        "Factory settings saved"
+    );
+
+}
+
+
+/* =========================================
+   UPDATE BRANDING
+========================================= */
+
+function updateFactoryBranding(){
+
+    const title =
+        document.querySelector(
+            ".logo"
+        );
+
+
+    const welcome =
+        document.getElementById(
+            "factoryWelcome"
+        );
+
+
+    if(title){
+
+        title.innerHTML =
+            "📒 " +
+            escapeHTML(
+                settings.factoryName ||
+                "Labour Book"
+            );
+
+    }
+
+
+    if(welcome){
+
+        welcome.textContent =
+            "Welcome to " +
+            (
+                settings.factoryName ||
+                "your factory"
+            );
+
+    }
+
+}
+
+
+/* =========================================
+   VALIDATE PHONE
+========================================= */
+
+function validateFactoryPhone(){
+
+    const input =
+        document.getElementById(
+            "factoryPhone"
+        );
+
+
+    if(!input){
+
+        return true;
+
+    }
+
+
+    const value =
+        input.value.trim();
+
+
+    if(value === ""){
+
+        return true;
+
+    }
+
+
+    const clean =
+        value.replace(
+            /[\s-]/g,
+            ""
+        );
+
+
+    if(!/^[+]?\d{10,13}$/.test(clean)){
+
+        showToast(
+            "Enter a valid phone number",
+            "error"
+        );
+
+        input.focus();
+
+        return false;
+
+    }
+
+
+    return true;
+
+}
+
+
+/* =========================================
+   FACTORY PHONE LISTENER
+========================================= */
+
+const factoryPhoneInput =
+    document.getElementById(
+        "factoryPhone"
+    );
+
+
+if(factoryPhoneInput){
+
+    factoryPhoneInput.addEventListener(
+        "input",
+        function(){
+
+            this.value =
+                this.value.replace(
+                    /[^0-9+\-\s]/g,
+                    ""
+                );
+
+        }
+    );
+
+}
+
+
+/* =========================================
+   SAVE SETTINGS WRAPPER
+========================================= */
+
+if(typeof saveSettings === "function"){
+
+    const originalSaveSettings =
+        saveSettings;
+
+
+    saveSettings = function(){
+
+        if(!validateFactoryPhone()){
+
+            return;
+
+        }
+
+
+        originalSaveSettings();
+
+        updateFactoryBranding();
+
+    };
+
+}
+
+
+/* =========================================
+   FACTORY INFORMATION
+========================================= */
+
+function getFactoryInfo(){
+
+    return {
+
+        name:
+            settings.factoryName ||
+            "My Factory",
+
+        owner:
+            settings.ownerName ||
+            "",
+
+        phone:
+            settings.factoryPhone ||
+            "",
+
+        address:
+            settings.factoryAddress ||
+            ""
+
+    };
+
+}
+
+
+/* =========================================
+   RESET SETTINGS
+========================================= */
+
+function resetSettingsForm(){
+
+    if(
+        !confirm(
+            "Reset factory settings?"
+        )
+    ){
+
+        return;
+
+    }
+
+
+    settings = {
+
+        factoryName:"",
+
+        ownerName:"",
+
+        factoryPhone:"",
+
+        factoryAddress:""
+
+    };
+
+
+    saveData();
+
+    loadSettings();
+
+    showToast(
+        "Settings reset"
+    );
+
+}
+
+
+/* =========================================
+   INITIALIZE SETTINGS
+========================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+        loadSettings();
+
+    }
+);
+
+
+/* =========================================
+   PART 14 CONTINUES
+========================================= */
+
+</script>
+<script>
+
+/* =========================================
+   DATA BACKUP & RESTORE
+========================================= */
+
+
+/* =========================================
+   CREATE COMPLETE BACKUP
+========================================= */
+
+function createBackup(){
+
+    const backup = {
+
+        appName:"Labour Book",
+
+        version:"1.0",
+
+        backupDate:
+            new Date().toISOString(),
+
+        settings:settings,
+
+        labours:labours,
+
+        attendance:attendance,
+
+        payments:payments
+
+    };
+
+
+    return JSON.stringify(
+        backup,
+        null,
+        2
+    );
+
+}
+
+
+/* =========================================
+   DOWNLOAD BACKUP
+========================================= */
+
+function downloadBackup(){
+
+    const data =
+        createBackup();
+
+
+    const date =
+        new Date()
+            .toISOString()
+            .split("T")[0];
+
+
+    downloadFile(
+        data,
+        "labour-book-backup-" +
+        date +
+        ".json",
+        "application/json"
+    );
+
+
+    showToast(
+        "Backup downloaded successfully"
+    );
+
+}
+
+
+/* =========================================
+   RESTORE BACKUP
+========================================= */
+
+function restoreBackup(event){
+
+    const file =
+        event.target.files[0];
+
+
+    if(!file){
+
+        return;
+
+    }
+
+
+    if(
+        !file.name
+            .toLowerCase()
+            .endsWith(".json")
+    ){
+
+        showToast(
+            "Please select a JSON backup file",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    const reader =
+        new FileReader();
+
+
+    reader.onload =
+        function(e){
+
+            try{
+
+                const backup =
+                    JSON.parse(
+                        e.target.result
+                    );
+
+
+                if(
+                    !backup ||
+                    !Array.isArray(
+                        backup.labours
+                    ) ||
+                    !Array.isArray(
+                        backup.attendance
+                    ) ||
+                    !Array.isArray(
+                        backup.payments
+                    )
+                ){
+
+                    throw new Error(
+                        "Invalid backup"
+                    );
+
+                }
+
+
+                const confirmed =
+                    confirm(
+                        "Restore this backup? Existing data will be replaced."
+                    );
+
+
+                if(!confirmed){
+
+                    return;
+
+                }
+
+
+                labours =
+                    backup.labours || [];
+
+
+                attendance =
+                    backup.attendance || [];
+
+
+                payments =
+                    backup.payments || [];
+
+
+                settings =
+                    backup.settings || {};
+
+
+                saveData();
+
+
+                refreshAll();
+
+
+                loadSettings();
+
+
+                showToast(
+                    "Backup restored successfully"
+                );
+
+            }
+
+            catch(error){
+
+                console.error(error);
+
+
+                showToast(
+                    "Invalid or damaged backup file",
+                    "error"
+                );
+
+            }
+
+        };
+
+
+    reader.readAsText(file);
+
+
+    event.target.value = "";
+
+}
+
+
+/* =========================================
+   TRIGGER RESTORE INPUT
+========================================= */
+
+function chooseBackupFile(){
+
+    const input =
+        document.getElementById(
+            "backupFile"
+        );
+
+
+    if(input){
+
+        input.click();
+
+    }
+
+}
+
+
+/* =========================================
+   DATA STATISTICS
+========================================= */
+
+function getDataStatistics(){
+
+    return {
+
+        labours:
+            labours.length,
+
+        attendance:
+            attendance.length,
+
+        payments:
+            payments.length,
+
+        totalEarned:
+            getTotalEarned(),
+
+        totalPaid:
+            getTotalPayments()
+
+    };
+
+}
+
+
+/* =========================================
+   DISPLAY DATA STATISTICS
+========================================= */
+
+function displayDataStatistics(){
+
+    const stats =
+        getDataStatistics();
+
+
+    const labourCount =
+        document.getElementById(
+            "backupLabourCount"
+        );
+
+
+    const attendanceCount =
+        document.getElementById(
+            "backupAttendanceCount"
+        );
+
+
+    const paymentCount =
+        document.getElementById(
+            "backupPaymentCount"
+        );
+
+
+    if(labourCount){
+
+        labourCount.textContent =
+            stats.labours;
+
+    }
+
+
+    if(attendanceCount){
+
+        attendanceCount.textContent =
+            stats.attendance;
+
+    }
+
+
+    if(paymentCount){
+
+        paymentCount.textContent =
+            stats.payments;
+
+    }
+
+}
+
+
+/* =========================================
+   AUTO BACKUP DATA
+========================================= */
+
+function autoSaveBackup(){
+
+    try{
+
+        localStorage.setItem(
+            "labourBook_lastBackup",
+            createBackup()
+        );
+
+    }
+
+    catch(error){
+
+        console.error(
+            "Backup error:",
+            error
+        );
+
+    }
+
+}
+
+
+/* =========================================
+   LAST BACKUP TIME
+========================================= */
+
+function getLastBackup(){
+
+    const data =
+        localStorage.getItem(
+            "labourBook_lastBackup"
+        );
+
+
+    if(!data){
+
+        return "No backup yet";
+
+    }
+
+
+    try{
+
+        const backup =
+            JSON.parse(data);
+
+
+        if(backup.backupDate){
+
+            return new Date(
+                backup.backupDate
+            ).toLocaleString();
+
+        }
+
+    }
+
+    catch(error){
+
+        return "Backup unavailable";
+
+    }
+
+
+    return "No backup yet";
+
+}
+
+
+/* =========================================
+   CLEAR TEMPORARY BACKUP
+========================================= */
+
+function clearTemporaryBackup(){
+
+    localStorage.removeItem(
+        "labourBook_lastBackup"
+    );
+
+
+    showToast(
+        "Temporary backup cleared"
+    );
+
+}
+
+
+/* =========================================
+   PART 15 CONTINUES
+========================================= */
+
+</script>
+<script>
+
+/* =========================================
+   PAYMENT & SALARY TOOLS
+========================================= */
+
+
+/* =========================================
+   GET LABOUR PAYMENT STATUS
+========================================= */
+
+function getPaymentStatus(labourId){
+
+    const earned =
+        getLabourEarned(
+            labourId
+        );
+
+
+    const paid =
+        getLabourPayments(
+            labourId
+        );
+
+
+    const balance =
+        Math.max(
+            0,
+            earned - paid
+        );
+
+
+    if(earned === 0){
+
+        return "No Earnings";
+
+    }
+
+
+    if(balance === 0){
+
+        return "Paid";
+
+    }
+
+
+    if(paid > 0){
+
+        return "Partially Paid";
+
+    }
+
+
+    return "Pending";
+
+}
+
+
+/* =========================================
+   GET PAYMENT STATUS CLASS
+========================================= */
+
+function getPaymentStatusClass(
+    labourId
+){
+
+    const status =
+        getPaymentStatus(
+            labourId
+        );
+
+
+    if(status === "Paid"){
+
+        return "text-success";
+
+    }
+
+
+    if(status === "Partially Paid"){
+
+        return "text-warning";
+
+    }
+
+
+    if(status === "Pending"){
+
+        return "text-danger";
+
+    }
+
+
+    return "";
+
+}
+
+
+/* =========================================
+   GET LABOUR BALANCE
+========================================= */
+
+function getLabourBalance(
+    labourId
+){
+
+    const earned =
+        getLabourEarned(
+            labourId
+        );
+
+
+    const paid =
+        getLabourPayments(
+            labourId
+        );
+
+
+    return Math.max(
+        0,
+        earned - paid
+    );
+
+}
+
+
+/* =========================================
+   GET TOTAL PENDING
+========================================= */
+
+function getTotalPending(){
+
+    return labours.reduce(
+        function(total, labour){
+
+            return total +
+                getLabourBalance(
+                    labour.id
+                );
+
+        },
+        0
+    );
+
+}
+
+
+/* =========================================
+   GET TOTAL EARNINGS
+========================================= */
+
+function getTotalEarnings(){
+
+    return labours.reduce(
+        function(total, labour){
+
+            return total +
+                getLabourEarned(
+                    labour.id
+                );
+
+        },
+        0
+    );
+
+}
+
+
+/* =========================================
+   PAYMENT HISTORY
+========================================= */
+
+function getPaymentHistory(
+    labourId
+){
+
+    return payments
+        .filter(function(payment){
+
+            return payment.labourId ===
+                labourId;
+
+        })
+        .sort(function(a,b){
+
+            return new Date(b.date) -
+                new Date(a.date);
+
+        });
+
+}
+
+
+/* =========================================
+   GET LAST PAYMENT
+========================================= */
+
+function getLastPayment(
+    labourId
+){
+
+    const history =
+        getPaymentHistory(
+            labourId
+        );
+
+
+    if(history.length === 0){
+
+        return null;
+
+    }
+
+
+    return history[0];
+
+}
+
+
+/* =========================================
+   PAYMENT METHOD TOTAL
+========================================= */
+
+function getPaymentMethodTotal(
+    method
+){
+
+    return payments
+        .filter(function(payment){
+
+            return payment.method ===
+                method;
+
+        })
+        .reduce(function(total,payment){
+
+            return total +
+                (Number(payment.amount) || 0);
+
+        },0);
+
+}
+
+
+/* =========================================
+   CASH TOTAL
+========================================= */
+
+function getCashPayments(){
+
+    return getPaymentMethodTotal(
+        "Cash"
+    );
+
+}
+
+
+/* =========================================
+   UPI TOTAL
+========================================= */
+
+function getUPIPayments(){
+
+    return getPaymentMethodTotal(
+        "UPI"
+    );
+
+}
+
+
+/* =========================================
+   BANK TOTAL
+========================================= */
+
+function getBankPayments(){
+
+    return getPaymentMethodTotal(
+        "Bank Transfer"
+    );
+
+}
+
+
+/* =========================================
+   PAYMENT SUMMARY
+========================================= */
+
+function updatePaymentSummary(){
+
+    const totalPaid =
+        getTotalPayments();
+
+
+    const cash =
+        getCashPayments();
+
+
+    const upi =
+        getUPIPayments();
+
+
+    const bank =
+        getBankPayments();
+
+
+    const totalElement =
+        document.getElementById(
+            "totalPaidSummary"
+        );
+
+
+    const cashElement =
+        document.getElementById(
+            "cashSummary"
+        );
+
+
+    const upiElement =
+        document.getElementById(
+            "upiSummary"
+        );
+
+
+    const bankElement =
+        document.getElementById(
+            "bankSummary"
+        );
+
+
+    if(totalElement){
+
+        totalElement.textContent =
+            money(totalPaid);
+
+    }
+
+
+    if(cashElement){
+
+        cashElement.textContent =
+            money(cash);
+
+    }
+
+
+    if(upiElement){
+
+        upiElement.textContent =
+            money(upi);
+
+    }
+
+
+    if(bankElement){
+
+        bankElement.textContent =
+            money(bank);
+
+    }
+
+}
+
+
+/* =========================================
+   PAYMENT VALIDATION
+========================================= */
+
+function validatePaymentAmount(){
+
+    const input =
+        document.getElementById(
+            "paymentAmount"
+        );
+
+
+    if(!input){
+
+        return false;
+
+    }
+
+
+    const amount =
+        Number(input.value);
+
+
+    if(
+        !Number.isFinite(amount) ||
+        amount <= 0
+    ){
+
+        showToast(
+            "Enter a valid payment amount",
+            "error"
+        );
+
+        input.focus();
+
+        return false;
+
+    }
+
+
+    return true;
+
+}
+
+
+/* =========================================
+   PAYMENT AMOUNT LIMIT
+========================================= */
+
+const paymentAmountInput =
+    document.getElementById(
+        "paymentAmount"
+    );
+
+
+if(paymentAmountInput){
+
+    paymentAmountInput.addEventListener(
+        "input",
+        function(){
+
+            if(Number(this.value) < 0){
+
+                this.value = 0;
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================
+   UPDATE PAYMENT SECTION
+========================================= */
+
+function refreshPaymentSection(){
+
+    updatePaymentLabourList();
+
+    displayPayments();
+
+    updatePaymentSummary();
+
+}
+
+
+/* =========================================
+   PART 16 CONTINUES
+========================================= */
+
+</script>
+<script>
+
+/* =========================================
+   LABOUR DETAILS TOOLS
+========================================= */
+
+
+/* =========================================
+   GET LABOUR BY ID
+========================================= */
+
+function getLabourById(labourId){
+
+    return labours.find(
+        function(labour){
+
+            return labour.id ===
+                labourId;
+
+        }
+    ) || null;
+
+}
+
+
+/* =========================================
+   GET LABOUR NAME
+========================================= */
+
+function getLabourName(labourId){
+
+    const labour =
+        getLabourById(
+            labourId
+        );
+
+
+    return labour
+        ? labour.name
+        : "Unknown Labour";
+
+}
+
+
+/* =========================================
+   GET LABOUR WORK
+========================================= */
+
+function getLabourWork(labourId){
+
+    const labour =
+        getLabourById(
+            labourId
+        );
+
+
+    return labour
+        ? labour.work
+        : "";
+
+}
+
+
+/* =========================================
+   GET LABOUR RATE
+========================================= */
+
+function getLabourRate(labourId){
+
+    const labour =
+        getLabourById(
+            labourId
+        );
+
+
+    return labour
+        ? Number(labour.dailyRate) || 0
+        : 0;
+
+}
+
+
+/* =========================================
+   GET LABOUR PHONE
+========================================= */
+
+function getLabourPhone(labourId){
+
+    const labour =
+        getLabourById(
+            labourId
+        );
+
+
+    return labour
+        ? labour.phone
+        : "";
+
+}
+
+
+/* =========================================
+   GET LABOUR STATUS
+========================================= */
+
+function getLabourStatus(labourId){
+
+    const labour =
+        getLabourById(
+            labourId
+        );
+
+
+    if(!labour){
+
+        return "Not Found";
+
+    }
+
+
+    return labour.active === false
+        ? "Inactive"
+        : "Active";
+
+}
+
+
+/* =========================================
+   TOGGLE LABOUR STATUS
+========================================= */
+
+function toggleLabourStatus(
+    labourId
+){
+
+    const labour =
+        getLabourById(
+            labourId
+        );
+
+
+    if(!labour){
+
+        return;
+
+    }
+
+
+    labour.active =
+        labour.active === false;
+
+
+    saveData();
+
+    displayLabours();
+
+    updateDashboard();
+
+    showToast(
+        labour.active === false
+        ? "Labour marked inactive"
+        : "Labour marked active"
+    );
+
+}
+
+
+/* =========================================
+   GET LABOUR ATTENDANCE
+========================================= */
+
+function getLabourAttendance(
+    labourId
+){
+
+    return attendance
+        .filter(function(item){
+
+            return item.labourId ===
+                labourId;
+
+        })
+        .sort(function(a,b){
+
+            return new Date(b.date) -
+                new Date(a.date);
+
+        });
+
+}
+
+
+/* =========================================
+   GET PRESENT DAYS
+========================================= */
+
+function getPresentDays(
+    labourId
+){
+
+    return getLabourAttendance(
+        labourId
+    ).filter(function(item){
+
+        return item.status ===
+            "present";
+
+    }).length;
+
+}
+
+
+/* =========================================
+   GET HALF DAYS
+========================================= */
+
+function getHalfDays(
+    labourId
+){
+
+    return getLabourAttendance(
+        labourId
+    ).filter(function(item){
+
+        return item.status ===
+            "half";
+
+    }).length;
+
+}
+
+
+/* =========================================
+   GET ABSENT DAYS
+========================================= */
+
+function getAbsentDays(
+    labourId
+){
+
+    return getLabourAttendance(
+        labourId
+    ).filter(function(item){
+
+        return item.status ===
+            "absent";
+
+    }).length;
+
+}
+
+
+/* =========================================
+   GET WORKING DAYS
+========================================= */
+
+function getWorkedDays(
+    labourId
+){
+
+    return (
+        getPresentDays(labourId) +
+        getHalfDays(labourId)
+    );
+
+}
+
+
+/* =========================================
+   LABOUR ATTENDANCE SUMMARY
+========================================= */
+
+function getLabourAttendanceSummary(
+    labourId
+){
+
+    const present =
+        getPresentDays(
+            labourId
+        );
+
+
+    const half =
+        getHalfDays(
+            labourId
+        );
+
+
+    const absent =
+        getAbsentDays(
+            labourId
+        );
+
+
+    const earned =
+        getLabourEarned(
+            labourId
+        );
+
+
+    return {
+
+        present:present,
+
+        half:half,
+
+        absent:absent,
+
+        worked:
+            present + half,
+
+        earned:earned
+
+    };
+
+}
+
+
+/* =========================================
+   CHECK ATTENDANCE FOR DATE
+========================================= */
+
+function hasAttendance(
+    labourId,
+    date
+){
+
+    return attendance.some(
+        function(item){
+
+            return (
+                item.labourId === labourId &&
+                item.date === date
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================
+   REMOVE ATTENDANCE
+========================================= */
+
+function removeAttendance(
+    labourId,
+    date
+){
+
+    attendance =
+        attendance.filter(
+            function(item){
+
+                return !(
+                    item.labourId === labourId &&
+                    item.date === date
+                );
+
+            }
+        );
+
+
+    saveData();
+
+    displayAttendance();
+
+    updateDashboard();
+
+    updateReports();
+
+}
+
+
+/* =========================================
+   PART 17 CONTINUES
+========================================= */
+
+</script>
+<script>
+
+/* =========================================
+   LABOUR SEARCH & SORTING
+========================================= */
+
+
+/* =========================================
+   SORT LABOUR BY NAME
+========================================= */
+
+function sortLabourByName(){
+
+    labours.sort(
+        function(a,b){
+
+            return a.name.localeCompare(
+                b.name
+            );
+
+        }
+    );
+
+
+    saveData();
+
+    displayLabours();
+
+    showToast(
+        "Labour sorted by name"
+    );
+
+}
+
+
+/* =========================================
+   SORT LABOUR BY RATE
+========================================= */
+
+function sortLabourByRate(){
+
+    labours.sort(
+        function(a,b){
+
+            return (
+                Number(b.dailyRate) -
+                Number(a.dailyRate)
+            );
+
+        }
+    );
+
+
+    saveData();
+
+    displayLabours();
+
+    showToast(
+        "Labour sorted by rate"
+    );
+
+}
+
+
+/* =========================================
+   FILTER ACTIVE LABOUR
+========================================= */
+
+function filterActiveLabour(){
+
+    const rows =
+        document.querySelectorAll(
+            "#labourTableBody tr"
+        );
+
+
+    rows.forEach(function(row){
+
+        const status =
+            row.textContent
+                .toLowerCase();
+
+
+        if(
+            status.includes("inactive")
+        ){
+
+            row.style.display =
+                "none";
+
+        }else{
+
+            row.style.display =
+                "";
+
+        }
+
+    });
+
+}
+
+
+/* =========================================
+   SHOW ALL LABOUR
+========================================= */
+
+function showAllLabour(){
+
+    const rows =
+        document.querySelectorAll(
+            "#labourTableBody tr"
+        );
+
+
+    rows.forEach(function(row){
+
+        row.style.display = "";
+
+    });
+
+}
+
+
+/* =========================================
+   QUICK ATTENDANCE FOR TODAY
+========================================= */
+
+function quickPresentToday(
+    labourId
+){
+
+    const today =
+        getToday();
+
+
+    updateAttendance(
+        labourId,
+        today,
+        "present"
+    );
+
+
+    displayAttendance();
+
+    updateDashboard();
+
+    updateReports();
+
+    showToast(
+        getLabourName(labourId) +
+        " marked present"
+    );
+
+}
+
+
+/* =========================================
+   QUICK HALF DAY
+========================================= */
+
+function quickHalfDay(
+    labourId
+){
+
+    const today =
+        getToday();
+
+
+    updateAttendance(
+        labourId,
+        today,
+        "half"
+    );
+
+
+    displayAttendance();
+
+    updateDashboard();
+
+    updateReports();
+
+    showToast(
+        getLabourName(labourId) +
+        " marked half day"
+    );
+
+}
+
+
+/* =========================================
+   QUICK ABSENT
+========================================= */
+
+function quickAbsent(
+    labourId
+){
+
+    const today =
+        getToday();
+
+
+    updateAttendance(
+        labourId,
+        today,
+        "absent"
+    );
+
+
+    displayAttendance();
+
+    updateDashboard();
+
+    updateReports();
+
+    showToast(
+        getLabourName(labourId) +
+        " marked absent"
+    );
+
+}
+
+
+/* =========================================
+   GET LABOUR JOINING DATE
+========================================= */
+
+function getJoiningDate(
+    labourId
+){
+
+    const labour =
+        getLabourById(
+            labourId
+        );
+
+
+    if(!labour){
+
+        return "";
+
+    }
+
+
+    return labour.joiningDate || "";
+
+}
+
+
+/* =========================================
+   FORMAT LABOUR JOINING DATE
+========================================= */
+
+function getFormattedJoiningDate(
+    labourId
+){
+
+    const date =
+        getJoiningDate(
+            labourId
+        );
+
+
+    if(!date){
+
+        return "Not provided";
+
+    }
+
+
+    return formatDate(date);
+
+}
+
+
+/* =========================================
+   LABOUR COUNT BY WORK TYPE
+========================================= */
+
+function getWorkTypeCounts(){
+
+    const counts = {};
+
+
+    labours.forEach(
+        function(labour){
+
+            const work =
+                labour.work ||
+                "Other";
+
+
+            if(!counts[work]){
+
+                counts[work] = 0;
+
+            }
+
+
+            counts[work]++;
+
+        }
+    );
+
+
+    return counts;
+
+}
+
+
+/* =========================================
+   GET HIGHEST PAID LABOUR
+========================================= */
+
+function getHighestRateLabour(){
+
+    if(labours.length === 0){
+
+        return null;
+
+    }
+
+
+    return labours.reduce(
+        function(highest, labour){
+
+            if(
+                !highest ||
+                Number(labour.dailyRate) >
+                Number(highest.dailyRate)
+            ){
+
+                return labour;
+
+            }
+
+
+            return highest;
+
+        },
+        null
+    );
+
+}
+
+
+/* =========================================
+   GET LOWEST RATE LABOUR
+========================================= */
+
+function getLowestRateLabour(){
+
+    if(labours.length === 0){
+
+        return null;
+
+    }
+
+
+    return labours.reduce(
+        function(lowest, labour){
+
+            if(
+                !lowest ||
+                Number(labour.dailyRate) <
+                Number(lowest.dailyRate)
+            ){
+
+                return labour;
+
+            }
+
+
+            return lowest;
+
+        },
+        null
+    );
+
+}
+
+
+/* =========================================
+   CLEAR ALL SEARCH BOXES
+========================================= */
+
+function clearAllSearches(){
+
+    const inputs = [
+
+        "labourSearch",
+
+        "reportSearch"
+
+    ];
+
+
+    inputs.forEach(
+        function(id){
+
+            const input =
+                document.getElementById(
+                    id
+                );
+
+
+            if(input){
+
+                input.value = "";
+
+            }
+
+        }
+    );
+
+
+    displayLabours();
+
+    displayReportTable();
+
+}
+
+
+/* =========================================
+   PART 18 CONTINUES
+========================================= */
+
+</script>
+<script>
+
+/* =========================================
+   NOTIFICATIONS & UTILITY FEATURES
+========================================= */
+
+
+/* =========================================
+   GET PENDING LABOUR
+========================================= */
+
+function getPendingLabours(){
+
+    return labours.filter(
+        function(labour){
+
+            return getLabourBalance(
+                labour.id
+            ) > 0;
+
+        }
+    );
+
+}
+
+
+/* =========================================
+   PENDING COUNT
+========================================= */
+
+function getPendingCount(){
+
+    return getPendingLabours().length;
+
+}
+
+
+/* =========================================
+   SHOW PAYMENT ALERT
+========================================= */
+
+function showPaymentAlert(){
+
+    const pending =
+        getPendingLabours();
+
+
+    if(pending.length === 0){
+
+        showToast(
+            "All labour payments are up to date"
+        );
+
+        return;
+
+    }
+
+
+    showToast(
+        pending.length +
+        " labour payment(s) pending",
+        "error"
+    );
+
+}
+
+
+/* =========================================
+   GET TODAY STATUS
+========================================= */
+
+function getTodayStatus(
+    labourId
+){
+
+    const record =
+        getAttendanceRecord(
+            labourId,
+            getToday()
+        );
+
+
+    if(!record){
+
+        return "Not Marked";
+
+    }
+
+
+    if(record.status === "present"){
+
+        return "Present";
+
+    }
+
+
+    if(record.status === "half"){
+
+        return "Half Day";
+
+    }
+
+
+    if(record.status === "absent"){
+
+        return "Absent";
+
+    }
+
+
+    return "Not Marked";
+
+}
+
+
+/* =========================================
+   ATTENDANCE COMPLETION
+========================================= */
+
+function getAttendanceCompletion(){
+
+    if(labours.length === 0){
+
+        return 0;
+
+    }
+
+
+    const today =
+        getToday();
+
+
+    const marked =
+        labours.filter(
+            function(labour){
+
+                return hasAttendance(
+                    labour.id,
+                    today
+                );
+
+            }
+        ).length;
+
+
+    return Math.round(
+        (
+            marked /
+            labours.length
+        ) * 100
+    );
+
+}
+
+
+/* =========================================
+   ATTENDANCE REMINDER
+========================================= */
+
+function showAttendanceReminder(){
+
+    const completion =
+        getAttendanceCompletion();
+
+
+    if(
+        labours.length > 0 &&
+        completion < 100
+    ){
+
+        showToast(
+            "Today's attendance is " +
+            completion +
+            "% completed",
+            "error"
+        );
+
+    }else{
+
+        showToast(
+            "Today's attendance is complete"
+        );
+
+    }
+
+}
+
+
+/* =========================================
+   DATE DISPLAY
+========================================= */
+
+function displayCurrentDate(){
+
+    const elements =
+        document.querySelectorAll(
+            ".current-date"
+        );
+
+
+    const today =
+        new Date();
+
+
+    const formatted =
+        today.toLocaleDateString(
+            "en-IN",
+            {
+                weekday:"long",
+                day:"numeric",
+                month:"long",
+                year:"numeric"
+            }
+        );
+
+
+    elements.forEach(
+        function(element){
+
+            element.textContent =
+                formatted;
+
+        }
+    );
+
+}
+
+
+/* =========================================
+   DIGITAL CLOCK
+========================================= */
+
+function updateClock(){
+
+    const clock =
+        document.getElementById(
+            "liveClock"
+        );
+
+
+    if(!clock){
+
+        return;
+
+    }
+
+
+    const now =
+        new Date();
+
+
+    clock.textContent =
+        now.toLocaleTimeString(
+            "en-IN",
+            {
+                hour:"2-digit",
+                minute:"2-digit",
+                second:"2-digit"
+            }
+        );
+
+}
+
+
+/* =========================================
+   START CLOCK
+========================================= */
+
+setInterval(
+    updateClock,
+    1000
+);
+
+
+/* =========================================
+   FACTORY PHONE CALL
+========================================= */
+
+function callFactory(){
+
+    const info =
+        getFactoryInfo();
+
+
+    if(!info.phone){
+
+        showToast(
+            "Factory phone number not added",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    window.location.href =
+        "tel:" +
+        info.phone;
+
+}
+
+
+/* =========================================
+   WHATSAPP FACTORY
+========================================= */
+
+function openWhatsApp(){
+
+    const info =
+        getFactoryInfo();
+
+
+    if(!info.phone){
+
+        showToast(
+            "Factory phone number not added",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    const phone =
+        info.phone.replace(
+            /\D/g,
+            ""
+        );
+
+
+    window.open(
+        "https://wa.me/" +
+        phone,
+        "_blank"
+    );
+
+}
+
+
+/* =========================================
+   SCROLL TO TOP
+========================================= */
+
+function scrollToTop(){
+
+    window.scrollTo({
+
+        top:0,
+
+        behavior:"smooth"
+
+    });
+
+}
+
+
+/* =========================================
+   ESCAPE KEY UTILITY
+========================================= */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Escape"){
+
+            const modal =
+                document.getElementById(
+                    "editModal"
+                );
+
+
+            if(
+                modal &&
+                modal.classList.contains(
+                    "show"
+                )
+            ){
+
+                closeEditModal();
+
+            }
+
+        }
+
+    }
+);
+
+
+/* =========================================
+   INITIALIZE UTILITIES
+========================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+        displayCurrentDate();
+
+        updateClock();
+
+        displayDataStatistics();
+
+    }
+);
+
+
+/* =========================================
+   PART 19 CONTINUES
+========================================= */
+
+</script>
+<script>
+
+/* =========================================
+   FINAL UI HELPERS
+========================================= */
+
+
+/* =========================================
+   UPDATE EVERYTHING
+========================================= */
+
+function updateEverything(){
+
+    try{
+
+        saveData();
+
+        displayToday();
+
+        displayLabours();
+
+        displayAttendance();
+
+        displayPayments();
+
+        updateDashboard();
+
+        updateReports();
+
+        updatePaymentLabourList();
+
+        updatePaymentSummary();
+
+        displayDataStatistics();
+
+        updateFactoryBranding();
+
+        displayCurrentDate();
+
+    }
+
+    catch(error){
+
+        console.error(
+            "Refresh error:",
+            error
+        );
+
+    }
+
+}
+
+
+/* =========================================
+   ENHANCED REFRESH ALL
+========================================= */
+
+function refreshAllData(){
+
+    updateEverything();
+
+    showToast(
+        "All data refreshed"
+    );
+
+}
+
+
+/* =========================================
+   CONFIRM DELETE LABOUR
+========================================= */
+
+function confirmDeleteLabour(
+    labourId
+){
+
+    const labour =
+        getLabourById(
+            labourId
+        );
+
+
+    if(!labour){
+
+        return;
+
+    }
+
+
+    const confirmed =
+        confirm(
+            "Delete " +
+            labour.name +
+            " and related attendance records?"
+        );
+
+
+    if(confirmed){
+
+        deleteLabour(
+            labourId
+        );
+
+    }
+
+}
+
+
+/* =========================================
+   CONFIRM DELETE PAYMENT
+========================================= */
+
+function confirmDeletePayment(
+    paymentId
+){
+
+    const payment =
+        payments.find(
+            function(item){
+
+                return item.id ===
+                    paymentId;
+
+            }
+        );
+
+
+    if(!payment){
+
+        return;
+
+    }
+
+
+    const confirmed =
+        confirm(
+            "Delete this payment record?"
+        );
+
+
+    if(confirmed){
+
+        deletePayment(
+            paymentId
+        );
+
+    }
+
+}
+
+
+/* =========================================
+   CHECK LOCAL STORAGE
+========================================= */
+
+function checkStorage(){
+
+    try{
+
+        const testKey =
+            "labourBook_storage_test";
+
+
+        localStorage.setItem(
+            testKey,
+            "ok"
+        );
+
+
+        localStorage.removeItem(
+            testKey
+        );
+
+
+        return true;
+
+    }
+
+    catch(error){
+
+        return false;
+
+    }
+
+}
+
+
+/* =========================================
+   STORAGE WARNING
+========================================= */
+
+function checkStorageStatus(){
+
+    if(!checkStorage()){
+
+        showToast(
+            "Browser storage is unavailable",
+            "error"
+        );
+
+    }
+
+}
+
+
+/* =========================================
+   APP STARTUP
+========================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+        checkStorageStatus();
+
+        updateEverything();
+
+        autoSaveBackup();
+
+    }
+);
+
+
+/* =========================================
+   AUTO BACKUP AFTER CHANGES
+========================================= */
+
+function saveAndBackup(){
+
+    saveData();
+
+    autoSaveBackup();
+
+}
+
+
+/* =========================================
+   BEFORE PAGE CLOSE
+========================================= */
+
+window.addEventListener(
+    "beforeunload",
+    function(){
+
+        try{
+
+            saveData();
+
+            autoSaveBackup();
+
+        }
+
+        catch(error){
+
+            console.error(error);
+
+        }
+
+    }
+);
+
+
+/* =========================================
+   ONLINE / OFFLINE STATUS
+========================================= */
+
+window.addEventListener(
+    "online",
+    function(){
+
+        showToast(
+            "You are back online"
+        );
+
+    }
+);
+
+
+window.addEventListener(
+    "offline",
+    function(){
+
+        showToast(
+            "You are offline — data remains on this device",
+            "error"
+        );
+
+    }
+);
+
+
+/* =========================================
+   FORMAT LARGE NUMBERS
+========================================= */
+
+function formatNumber(value){
+
+    return Number(
+        value || 0
+    ).toLocaleString(
+        "en-IN"
+    );
+
+}
+
+
+/* =========================================
+   GET APP SUMMARY
+========================================= */
+
+function getAppSummary(){
+
+    return {
+
+        factory:
+            settings.factoryName ||
+            "My Factory",
+
+        labourCount:
+            labours.length,
+
+        attendanceRecords:
+            attendance.length,
+
+        payments:
+            payments.length,
+
+        totalEarned:
+            getTotalEarned(),
+
+        totalPaid:
+            getTotalPayments(),
+
+        pending:
+            getTotalPending()
+
+    };
+
+}
+
+
+/* =========================================
+   FINAL PART COMES NEXT
+========================================= */
+
+</script>
+<script>
+
+/* =========================================
+   FINAL APP INITIALIZATION
+========================================= */
+
+function initializeLabourBook(){
+
+    try{
+
+        displayToday();
+
+        displayLabours();
+
+        displayAttendance();
+
+        displayPayments();
+
+        updatePaymentLabourList();
+
+        updateDashboard();
+
+        updateReports();
+
+        updatePaymentSummary();
+
+        loadSettings();
+
+        displayDataStatistics();
+
+        displayCurrentDate();
+
+        updateClock();
+
+    }
+
+    catch(error){
+
+        console.error(
+            "Labour Book initialization error:",
+            error
+        );
+
+    }
+
+}
+
+
+/* =========================================
+   PAGE READY
+========================================= */
+
+if(
+    document.readyState ===
+    "loading"
+){
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        initializeLabourBook
+    );
+
+}else{
+
+    initializeLabourBook();
+
+}
+
+
+/* =========================================
+   BACKUP BEFORE PAGE CLOSE
+========================================= */
+
+window.addEventListener(
+    "pagehide",
+    function(){
+
+        try{
+
+            saveData();
+
+            autoSaveBackup();
+
+        }
+
+        catch(error){
+
+            console.error(error);
+
+        }
+
+    }
+);
+
+
+/* =========================================
+   FINAL CONSOLE MESSAGE
+========================================= */
+
+console.log(
+    "Labour Book loaded successfully."
+);
+
+console.log(
+    "Labours:",
+    labours.length
+);
+
+console.log(
+    "Attendance records:",
+    attendance.length
+);
+
+console.log(
+    "Payment records:",
+    payments.length
+);
+
+</script>
+
+
+<!-- =========================================
+     CLOSE MAIN CONTAINER
+========================================= -->
+
+</main>
+
+
+<!-- =========================================
+     BACKUP FILE INPUT
+========================================= -->
+
+<input
+    type="file"
+    id="backupFile"
+    accept=".json,application/json"
+    style="display:none"
+    onchange="restoreBackup(event)"
+>
+
+
+<!-- =========================================
+     SCROLL TO TOP BUTTON
+========================================= -->
+
+<button
+    type="button"
+    onclick="scrollToTop()"
+    aria-label="Scroll to top"
+    style="
+        position:fixed;
+        right:20px;
+        bottom:20px;
+        width:46px;
+        height:46px;
+        border:none;
+        border-radius:50%;
+        background:#1f2937;
+        color:white;
+        font-size:20px;
+        cursor:pointer;
+        box-shadow:0 8px 20px rgba(0,0,0,.18);
+        z-index:999;
+    "
+>
+    ↑
+</button>
+
+
+<!-- =========================================
+     APPLICATION FOOTER
+========================================= -->
+
+<footer class="footer">
+
+    <div class="container">
+
+        <p>
+            ©
+            <span id="footerYear"></span>
+            Labour Book
+        </p>
+
+        <p>
+            Factory Labour
+            Attendance & Payment Management
+        </p>
+
+    </div>
+
+</footer>
+
+
+<!-- =========================================
+     FOOTER YEAR
+========================================= -->
+
+<script>
+
+const footerYear =
+    document.getElementById(
+        "footerYear"
+    );
+
+
+if(footerYear){
+
+    footerYear.textContent =
+        new Date().getFullYear();
+
+}
+
+</script>
+
+
+<!-- =========================================
+     FINAL HTML
+========================================= -->
+
+</body>
+
+</html>
